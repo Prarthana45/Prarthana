@@ -10,6 +10,7 @@ function renderNav(activePage) {
     { href: 'products.html', label: 'Products', key: 'products' },
     { href: 'about.html', label: 'About', key: 'about' },
     { href: 'contact.html', label: 'Contact', key: 'contact' },
+    // sitemap is not shown in nav but registered so active class resolves
   ];
   return `
   <nav class="navbar" id="main-nav">
@@ -85,8 +86,14 @@ function renderFooter() {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 <span>Prarthana Industries</span>. All rights reserved. · Ahmedabad, India</div>
-      <div class="footer-copy" style="margin-top:6px;">Developed by <span>Jenish Pancholi</span></div>
+      <div>
+        <div class="footer-copy">© 2025 <span>Prarthana Industries</span>. All rights reserved. · Ahmedabad, India</div>
+        <div class="footer-copy" style="margin-top:6px;">Developed by <span>Jenish Pancholi</span></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <a href="sitemap.html" style="font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s;" onmouseover="this.style.color='#FF671F'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">Site Map</a>
+        <a href="sitemap.xml" style="font-size:12px;color:rgba(255,255,255,0.35);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s;" onmouseover="this.style.color='#FF671F'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">XML Sitemap</a>
+      </div>
       <div class="footer-badges">
         <span class="footer-badge">Manufacturer 🇮🇳</span>
         <span class="footer-badge">Exporter</span>

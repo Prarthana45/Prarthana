@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Site Map — Prarthana Industries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="inner.css">
+  <style>
+    /* ── SITEMAP-SPECIFIC OVERRIDES ── */
+    .sitemap-section {
+      padding: 80px 0 120px;
+      background: var(--light-grey);
+      min-height: 60vh;
+    }
+
+    /* ── INTRO ROW ── */
+    .sitemap-intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+    .sitemap-meta {
+      font-size: 13px;
+      color: var(--mid-grey);
+      line-height: 1.7;
+    }
+    .sitemap-meta strong { color: var(--steel); }
+
+    /* ── CATEGORY BLOCKS ── */
+    .sitemap-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .sm-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .sm-block:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    .sm-block-head {
+      padding: 22px 28px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sm-block-head::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--saffron), var(--india-green));
+    }
+    .sm-block-icon {
+      width: 40px; height: 40px;
+      background: var(--light-grey);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .sm-block-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--steel);
+    }
+    .sm-block-count {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      background: var(--light-grey);
+      padding: 4px 10px;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .sm-block-list {
+      list-style: none;
+      padding: 12px 0;
+    }
+    .sm-block-list li {
+      border-bottom: 1px solid var(--border);
+    }
+    .sm-block-list li:last-child { border-bottom: none; }
+
+    .sm-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 28px;
+      text-decoration: none;
+      color: var(--steel);
+      font-size: 14px;
+      font-weight: 400;
+      transition: background 0.2s, color 0.2s;
+      line-height: 1.4;
+    }
+    .sm-link:hover {
+      background: var(--off-white);
+      color: var(--saffron);
+    }
+    .sm-link:hover .sm-arrow { opacity: 1; transform: translateX(3px); }
+
+    .sm-link-label { flex: 1; }
+    .sm-arrow {
+      font-size: 12px;
+      color: var(--saffron);
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    /* products block spans 2 cols */
+    .sm-block--products {
+      grid-column: 1 / -1;
+    }
+    .sm-block--products .sm-block-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .sm-block--products .sm-block-list li {
+      border-right: 1px solid var(--border);
+    }
+    .sm-block--products .sm-block-list li:nth-child(3n) { border-right: none; }
+    .sm-block--products .sm-block-list li:nth-last-child(-n+3) { border-bottom: none; }
+
+    /* ── FOOTER CREDIT ── */
+    .sitemap-credit {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 12px;
+      color: var(--mid-grey);
+    }
+    .sitemap-credit a { color: var(--saffron); text-decoration: none; }
+    .sitemap-credit a:hover { text-decoration: underline; }
+
+    @media (max-width: 1100px) {
+      .sitemap-categories { grid-template-columns: 1fr 1fr; }
+      .sm-block--products { grid-column: 1 / -1; }
+      .sm-block--products .sm-block-list { grid-template-columns: repeat(2, 1fr); }
+      .sm-block--products .sm-block-list li:nth-child(3n) { border-right: 1px solid var(--border); }
+      .sm-block--products .sm-block-list li:nth-child(2n) { border-right: none; }
+      .sm-block--products .sm-block-list li:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+      .sm-block--products .sm-block-list li:nth-last-child(-n+2) { border-bottom: none; }
+    }
+    @media (max-width: 768px) {
+      .sitemap-categories { grid-template-columns: 1fr; }
+      .sm-block--products { grid-column: unset; }
+      .sm-block--products .sm-block-list { grid-template-columns: 1fr; }
+      .sm-block--products .sm-block-list li { border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+      .sm-block--products .sm-block-list li:last-child { border-bottom: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content container">
+    <nav class="breadcrumb">
+      <a href="index.html">Home</a><span>/</span><span>Site Map</span>
+    </nav>
+    <h1 class="page-hero-title">Site <span class="accent">Map</span></h1>
+    <p class="page-hero-sub">A complete directory of all pages on prarthanaindustries.com — 21 pages total.</p>
+  </div>
+</div>
+
+<!-- SITEMAP SECTION -->
+<section class="sitemap-section">
+  <div class="container">
+
+    <div class="sitemap-intro reveal">
+      <div>
+        <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Directory</span></div>
+        <h2 class="section-title" style="font-size:clamp(24px,2.8vw,38px);margin-top:8px;">All Pages</h2>
+      </div>
+      <div class="sitemap-meta">
+        <strong>Last updated:</strong> 2026, March 21<br>
+        <strong>Total pages:</strong> 21<br>
+        <a href="sitemap.xml" style="color:var(--saffron);text-decoration:none;font-size:12px;font-weight:600;">Download XML Sitemap →</a>
+      </div>
+    </div>
+
+    <div class="sitemap-categories">
+
+      <!-- MAIN PAGES -->
+      <div class="sm-block reveal">
+        <div class="sm-block-head">
+          <div class="sm-block-icon">🏠</div>
+          <div class="sm-block-title">Main Pages</div>
+          <span class="sm-block-count">4 pages</span>
+        </div>
+        <ul class="sm-block-list">
+          <li>
+            <a href="https://prarthana45.github.io/Prarthana/" class="sm-link">
+              <span class="sm-link-label">Home</span>
+              <span class="sm-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://prarthana45.github.io/Prarthana/products.html" class="sm-link">
+              <span class="sm-link-label">Products</span>
+              <span class="sm-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://prarthana45.github.io/Prarthana/about.html" class="sm-link">
+              <span class="sm-link-label">About Us</span>
+              <span class="sm-arrow">→</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://prarthana45.github.io/Prarthana/contact.html" class="sm-link">
+              <span class="sm-link-label">Contact</span>
+              <span class="sm-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- UTILITY -->
+      <div class="sm-block reveal reveal-d1">
+        <div class="sm-block-head">
+          <div class="sm-block-icon">📄</div>
+          <div class="sm-block-title">Utility</div>
+          <span class="sm-block-count">1 page</span>
+        </div>
+        <ul class="sm-block-list">
+          <li>
+            <a href="https://prarthana45.github.io/Prarthana/index.html" class="sm-link">
+              <span class="sm-link-label">Index (Canonical Home)</span>
+              <span class="sm-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PRODUCTS — wide block -->
+      <div class="sm-block sm-block--products reveal reveal-d2">
+        <div class="sm-block-head">
+          <div class="sm-block-icon">⚙️</div>
+          <div class="sm-block-title">Product Detail Pages</div>
+          <span class="sm-block-count">16 pages</span>
+        </div>
+        <ul class="sm-block-list">
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=bevel-gear" class="sm-link"><span class="sm-link-label">Bevel Gear</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=chain-coupling" class="sm-link"><span class="sm-link-label">Chain Coupling</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=customised-parts" class="sm-link"><span class="sm-link-label">Customised Parts</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=food-machining-parts" class="sm-link"><span class="sm-link-label">Food Machining Parts</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=geneva" class="sm-link"><span class="sm-link-label">Geneva Mechanism</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=helical-gear" class="sm-link"><span class="sm-link-label">Helical Gear</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=industrial-gear" class="sm-link"><span class="sm-link-label">Industrial Gear</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=industrial-sprockets" class="sm-link"><span class="sm-link-label">Industrial Sprockets</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=rack-and-pinion" class="sm-link"><span class="sm-link-label">Rack &amp; Pinion</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=spiral-bevel-gear" class="sm-link"><span class="sm-link-label">Spiral Bevel Gear</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=spiral-jaw-clutch" class="sm-link"><span class="sm-link-label">Spiral Jaw Clutch</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=taper-lock-bush" class="sm-link"><span class="sm-link-label">Taper Lock Bush</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=taper-lock-pulley" class="sm-link"><span class="sm-link-label">Taper Lock Pulley</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=timing-pulley" class="sm-link"><span class="sm-link-label">Timing Pulley</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=v-belt-pulley" class="sm-link"><span class="sm-link-label">V Belt Pulley</span><span class="sm-arrow">→</span></a></li>
+          <li><a href="https://prarthana45.github.io/Prarthana/product-detail.html?p=v-groove-pulley" class="sm-link"><span class="sm-link-label">V Groove Pulley</span><span class="sm-arrow">→</span></a></li>
+        </ul>
+      </div>
+
+    </div><!-- /.sitemap-categories -->
+
+    <div class="sitemap-credit reveal">
+      Generated with <a href="https://www.xml-sitemaps.com" target="_blank" rel="noopener">xml-sitemaps.com</a> · Copyright &copy; 2005–2026 XML-Sitemaps.com
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>initShared('sitemap');</script>
+</body>
+</html>
