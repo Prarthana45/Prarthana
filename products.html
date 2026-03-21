@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Prarthana Industries</title>
+<meta name="description" content="Prarthana Industries product catalogue — Bevel Gear, Chain Coupling, Customised Parts, Food Machining Parts, Geneva, Helical Gear, Industrial Gear, Industrial Sprockets, Rack and Pinion, Spiral Bevel Gear, Spiral Jaw Clutch Coupling, Taper Lock Bush Weld Hub and QD Bush, Taper Lock Pulley, Timing Pulley, V Belt Pulley, V Groove Pulley. Manufacturer and exporter, Ahmedabad India.">
+<meta name="keywords" content="bevel gear manufacturer India, chain coupling supplier, customised machined parts Gujarat, food machining parts India, geneva mechanism manufacturer, helical gear supplier Ahmedabad, industrial gear manufacturer, industrial sprockets India, rack and pinion manufacturer, spiral bevel gear, taper lock pulley, timing pulley, v belt pulley exporter, v groove pulley manufacturer">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="inner.css">
+
+<style>
+/* ═══════════════════════════════════════════
+   PRODUCTS PAGE — CARD STYLES
+   ═══════════════════════════════════════════ */
+
+.prod-catalogue-section {
+  padding: 72px 0 100px;
+  background: var(--light-grey);
+}
+
+/* ── Grid ── */
+.pcat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ── Card ── */
+.pcat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.pcat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.09);
+  border-color: rgba(26,26,26,0.18);
+}
+
+/* ── Card top icon band ── */
+.pcat-img {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.pcat-img > span {
+  font-size: 52px;
+  opacity: 0.28;
+  transition: opacity 0.3s, transform 0.3s;
+  line-height: 1;
+}
+.pcat-card:hover .pcat-img > span {
+  opacity: 0.48;
+  transform: scale(1.1);
+}
+.pcat-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron), var(--india-green));
+  transform: scaleX(0);
+  transition: transform 0.35s ease;
+  transform-origin: left;
+}
+.pcat-card:hover .pcat-bar { transform: scaleX(1); }
+
+/* ── Body ── */
+.pcat-body {
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Category tag ── */
+.pcat-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pcat-card[data-cat="gears"] .pcat-tag   { color: var(--saffron); }
+.pcat-card[data-cat="pulleys"] .pcat-tag { color: var(--india-green); }
+.pcat-card[data-cat="custom"] .pcat-tag  { color: #7C3AED; }
+.pcat-card[data-cat="couplings"] .pcat-tag { color: #0284C7; }
+
+/* ── Name ── */
+.pcat-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  margin-bottom: 10px;
+  line-height: 1.15;
+  color: var(--steel);
+}
+
+/* ── Description ── */
+.pcat-desc {
+  font-size: 13.5px;
+  color: var(--mid-grey);
+  line-height: 1.65;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* ── Specs grid ── */
+.pcat-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.pcat-spec {
+  background: var(--light-grey);
+  padding: 9px 12px;
+}
+.pcat-spec span {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--mid-grey);
+  margin-bottom: 3px;
+}
+.pcat-spec strong {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--steel);
+}
+
+/* ── Footer buttons ── */
+.pcat-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.pcat-quote-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background: var(--steel);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.pcat-quote-btn:hover {
+  background: var(--saffron);
+  transform: translateY(-1px);
+}
+.pcat-detail-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background: transparent;
+  color: var(--steel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.pcat-detail-btn:hover {
+  border-color: var(--steel);
+  background: var(--off-white);
+}
+
+.filter-bar { top: 72px; }
+
+/* ── Empty state ── */
+.pcat-empty {
+  display: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 64px 0;
+  color: var(--mid-grey);
+  font-size: 16px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .pcat-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .pcat-grid { grid-template-columns: 1fr; }
+  .pcat-footer { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+<div id="nav-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>/</span><span aria-current="page">Products</span>
+    </nav>
+    <h1 class="page-hero-title">Product <span class="accent">Catalogue</span></h1>
+    <p class="page-hero-sub">Precision transmission components for every industrial application — India &amp; abroad.</p>
+  </div>
+</div>
+
+<!-- Filter bar -->
+<div class="filter-bar" role="group" aria-label="Filter products by category">
+  <div class="container filter-inner">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-cat="all">All Products</button>
+    <button class="filter-btn" data-cat="gears">Gears &amp; Racks</button>
+    <button class="filter-btn" data-cat="pulleys">Pulleys &amp; Belts</button>
+    <button class="filter-btn" data-cat="couplings">Couplings</button>
+    <button class="filter-btn" data-cat="custom">Custom &amp; Special</button>
+    <span id="pcat-count" style="margin-left:auto;font-size:12px;color:var(--mid-grey);"></span>
+  </div>
+</div>
+
+<!-- Product grid -->
+<section class="prod-catalogue-section">
+  <div class="container">
+    <div class="pcat-grid" id="pcat-grid">
+
+      <!-- Bevel Gear -->
+      <div class="pcat-card reveal" data-cat="gears">
+        <div class="pcat-img" style="background:#1A1A1A;padding:0;" aria-hidden="true">
+          <img src="images/bevel-gear/bg01.jpeg" alt="Bevel Gear, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Bevel Gear</h3>
+          <p class="pcat-desc">Straight bevel gears for right-angle power transmission. Custom ratios and modules manufactured from drawing for clients across India and abroad.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=bevel-gear" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chain Coupling -->
+      <div class="pcat-card reveal reveal-d1" data-cat="couplings">
+        <div class="pcat-img" style="background:#1c1c1c;" aria-hidden="true">
+          <img src="images/chain-coupling/cc01.jpeg" alt="Chain Coupling, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Couplings</div>
+          <h3 class="pcat-name">Chain Coupling</h3>
+          <p class="pcat-desc">Roller chain couplings for reliable shaft-to-shaft power transmission. Compact, robust, and easy to install for industrial drives and machinery.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=chain-coupling" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customised Parts -->
+      <div class="pcat-card reveal reveal-d2" data-cat="custom">
+        <div class="pcat-img" style="background:#181818;" aria-hidden="true">
+          <img src="images/customised-parts/cp01.jpg" alt="Customised Parts, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Custom &amp; Special</div>
+          <h3 class="pcat-name">Customised Parts</h3>
+          <p class="pcat-desc">CNC machined components manufactured to your exact drawing or specification. Prototype to production quantities — any material, any complexity.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=customised-parts" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food Machining Parts -->
+      <div class="pcat-card reveal" data-cat="custom">
+        <div class="pcat-img" style="background:#1A1A1A;" aria-hidden="true">
+          <img src="images/food-machining-parts/fmp01.jpeg" alt="Food Machining Parts, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Custom &amp; Special</div>
+          <h3 class="pcat-name">Food Machining Parts</h3>
+          <p class="pcat-desc">Precision components for food processing and packaging machinery. Stainless steel and food-grade materials, meeting hygiene and safety standards.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=food-machining-parts" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Geneva -->
+      <div class="pcat-card reveal reveal-d1" data-cat="gears">
+        <div class="pcat-img" style="background:#1c1c1c;" aria-hidden="true">
+          <img src="images/geneva/g01.jpeg" alt="Geneva, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Geneva</h3>
+          <p class="pcat-desc">Geneva drive mechanisms for precise intermittent rotary motion. Used in indexing tables, packaging machinery, and automated assembly systems.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=geneva" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Helical Gear -->
+      <div class="pcat-card reveal reveal-d2" data-cat="gears">
+        <div class="pcat-img" style="background:#181818;" aria-hidden="true">
+          <img src="images/helical-gear/hg01.jpg" alt="Helical Gear, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Helical Gear</h3>
+          <p class="pcat-desc">Helical cut gears for smooth, quiet, and high-load power transmission. Superior tooth engagement makes them ideal for gearboxes and heavy machinery.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=helical-gear" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Industrial Gear -->
+      <div class="pcat-card reveal" data-cat="gears">
+        <div class="pcat-img" style="background:#1A1A1A;" aria-hidden="true">
+          <img src="images/industrial-gear/ig01.jpg" alt="Industrial Gear, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Industrial Gear</h3>
+          <p class="pcat-desc">Spur, worm, and heavy-duty industrial gears for demanding applications. Batch manufacturing for OEM customers across India and international markets.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=industrial-gear" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Industrial Sprockets -->
+      <div class="pcat-card reveal reveal-d1" data-cat="gears">
+        <div class="pcat-img" style="background:#1c1c1c;" aria-hidden="true">
+          <img src="images/industrial-sprockets/is01.jpg" alt="Industrial Sprockets, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Industrial Sprockets</h3>
+          <p class="pcat-desc">Roller chain sprockets in all standard and custom pitches. Taper lock and straight bore options for conveyor systems, drives, and material handling.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=industrial-sprockets" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rack and Pinion -->
+      <div class="pcat-card reveal reveal-d2" data-cat="gears">
+        <div class="pcat-img" style="background:#181818;" aria-hidden="true">
+          <img src="images/rack-and-pinion/rap01.jpeg" alt="Rack and Pinion, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Rack and Pinion</h3>
+          <p class="pcat-desc">High-precision rack and pinion systems for linear motion control in CNC machines, automated gates, gantry systems, and industrial automation.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=rack-and-pinion" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spiral Bevel Gear -->
+      <div class="pcat-card reveal" data-cat="gears">
+        <div class="pcat-img" style="background:#1A1A1A;" aria-hidden="true">
+          <img src="images/spiral-bevel-gear/sbg01.jpg" alt="Spiral Bevel Gear, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Gears &amp; Racks</div>
+          <h3 class="pcat-name">Spiral Bevel Gear</h3>
+          <p class="pcat-desc">Spiral bevel gears for smooth, high-speed right-angle transmission with reduced noise and vibration. Precision cut from customer drawings.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=spiral-bevel-gear" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spiral Jaw Clutch Coupling -->
+      <div class="pcat-card reveal reveal-d1" data-cat="couplings">
+        <div class="pcat-img" style="background:#1c1c1c;" aria-hidden="true">
+          <img src="images/spiral-jaw-clutch-coupling/sjcc01.jpg" alt="Spiral Jaw Clutch Coupling, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Couplings</div>
+          <h3 class="pcat-name">Spiral Jaw Clutch Coupling</h3>
+          <p class="pcat-desc">Jaw-type clutch couplings with spiral engagement profile for positive drive connection. Absorbs shock loads and misalignment in drive systems.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=spiral-jaw-clutch" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taper Lock Bush Weld Hub and QD Bush -->
+      <div class="pcat-card reveal reveal-d2" data-cat="pulleys">
+        <div class="pcat-img" style="background:#181818;" aria-hidden="true">
+          <img src="images/taper-lock-bush-weld-hub-and-qd-bush/tlb01.jpg" alt="Taper Lock Bush Weld Hub and QD Bush, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Pulleys &amp; Belts</div>
+          <h3 class="pcat-name">Taper Lock Bush, Weld Hub &amp; QD Bush</h3>
+          <p class="pcat-desc">Complete range of taper lock bushes, weld-on hubs, and quick-disconnect QD bushes for fast, damage-free shaft mounting. European and Indian standards.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=taper-lock-bush" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taper Lock Pulley -->
+      <div class="pcat-card reveal" data-cat="pulleys">
+        <div class="pcat-img" style="background:#1A1A1A;" aria-hidden="true">
+          <img src="images/taper-lock-pulley/tlp01.jpeg" alt="Taper Lock Pulley, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Pulleys &amp; Belts</div>
+          <h3 class="pcat-name">Taper Lock Pulley</h3>
+          <p class="pcat-desc">V-belt pulleys with taper lock bore for easy and secure shaft mounting. Single to multi-groove options in all standard sections for heavy drives.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=taper-lock-pulley" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timing Pulley -->
+      <div class="pcat-card reveal reveal-d1" data-cat="pulleys">
+        <div class="pcat-img" style="background:#1c1c1c;" aria-hidden="true">
+          <img src="images/timing-pulley/tp01.jpg" alt="Timing Pulley, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Pulleys &amp; Belts</div>
+          <h3 class="pcat-name">Timing Pulley</h3>
+          <p class="pcat-desc">AT, HTD, T-series synchronous timing pulleys for precise, slip-free power transmission. Aluminium and steel options with custom bores to drawing.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=timing-pulley" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- V Belt Pulley -->
+      <div class="pcat-card reveal reveal-d2" data-cat="pulleys">
+        <div class="pcat-img" style="background:#181818;" aria-hidden="true">
+          <img src="images/v-belt-pulley/vbp01.jpg" alt="V Belt Pulley, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Pulleys &amp; Belts</div>
+          <h3 class="pcat-name">V Belt Pulley</h3>
+          <p class="pcat-desc">Classical SPZ, SPA, SPB, SPC and narrow-section V-belt pulleys. Straight bore options from single-groove to multi-groove for the highest torque drives.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=v-belt-pulley" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- V Groove Pulley -->
+      <div class="pcat-card reveal" data-cat="pulleys">
+        <div class="pcat-img" style="background:#1A1A1A;" aria-hidden="true">
+          <img src="images/v-groove-pulley/vgp01.jpg" alt="V Groove Pulley, Prarthana Industries" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.92;">
+          <div class="pcat-bar"></div>
+        </div>
+        <div class="pcat-body">
+          <div class="pcat-tag">Pulleys &amp; Belts</div>
+          <h3 class="pcat-name">V Groove Pulley</h3>
+          <p class="pcat-desc">Cast iron and steel V-groove guide pulleys for wire rope, cable, and belt systems. Precision machined grooves with smooth running for minimal wear.</p>
+          <div class="pcat-footer">
+            <a href="contact.html" class="pcat-quote-btn">Request Quote</a>
+            <a href="product-detail.html?p=v-groove-pulley" class="pcat-detail-btn">View Details →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="pcat-empty" id="pcat-empty">No products found in this category.</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="inner-cta">
+  <div class="cta-glow"></div>
+  <div class="container" style="position:relative;z-index:1;text-align:center;">
+    <h2 class="section-title section-title-white" style="font-size:clamp(32px,4vw,56px);">Don't see your <span class="accent">specification?</span></h2>
+    <p class="section-body section-body-white" style="margin:16px auto 36px;text-align:center;">We manufacture components to your specification. Provide us with your drawing and technical specifications.</p>
+    <a href="contact.html" class="btn btn-white">Contact Us <span class="btn-arrow">→</span></a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>
+  initShared('products');
+
+  /* ── Filter logic ── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards      = document.querySelectorAll('.pcat-card');
+  const countEl    = document.getElementById('pcat-count');
+  const emptyEl    = document.getElementById('pcat-empty');
+
+  function updateCount() {
+    const visible = [...cards].filter(c => c.style.display !== 'none').length;
+    countEl.textContent = visible + ' product' + (visible !== 1 ? 's' : '');
+    emptyEl.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const cat = this.dataset.cat;
+      filterBtns.forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      this.classList.add('active');
+      this.setAttribute('aria-pressed', 'true');
+      cards.forEach(function(card) {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'flex' : 'none';
+      });
+      updateCount();
+    });
+  });
+
+  updateCount();
+</script>
+</body>
+</html>

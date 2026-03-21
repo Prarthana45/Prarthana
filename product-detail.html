@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Detail — Prarthana Industries</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="inner.css">
+<meta name="description" content="Detailed product information — Prarthana Industries, manufacturer and exporter of precision transmission components, Ahmedabad, India.">
+<meta name="robots" content="index, follow">
+
+<style>
+/* ── Product Detail — Description + Gallery Layout ── */
+
+.pd-section { padding: 80px 0; background: var(--white); }
+
+.pd-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+/* ── Description block ── */
+.pd-description-block { }
+.pd-desc-title {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -0.3px; margin-bottom: 20px;
+}
+.pd-desc-text {
+  font-size: 16px; line-height: 1.85;
+  color: var(--mid-grey); font-weight: 300;
+  margin-bottom: 0;
+}
+.pd-desc-text p { margin-bottom: 16px; }
+.pd-desc-text p:last-child { margin-bottom: 0; }
+
+/* ── Sidebar: quote box sits top-right ── */
+.pd-sidebar { }
+.pd-quote-box {
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+  margin-bottom: 0;
+}
+.pd-quote-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 700;
+  margin-bottom: 8px; letter-spacing: -0.3px;
+}
+.pd-quote-sub {
+  font-size: 14px; color: var(--mid-grey);
+  margin-bottom: 24px; line-height: 1.55;
+}
+.pd-cta-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px; background: #25D366; color: white;
+  border-radius: 9px; text-decoration: none; font-weight: 600;
+  font-size: 14px; margin-top: 12px; transition: all 0.2s;
+}
+.pd-cta-whatsapp:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+/* ── Image Gallery — full width below main grid ── */
+.pd-gallery-section {
+  padding: 64px 0 80px;
+  background: var(--light-grey);
+}
+.pd-gallery-section-title {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 700;
+  letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.pd-gallery-section-sub {
+  font-size: 15px; color: var(--mid-grey);
+  margin-bottom: 40px; line-height: 1.5;
+}
+.pd-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.pd-gallery-thumb {
+  background: var(--steel);
+  border-radius: 12px;
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+.pd-gallery-thumb:first-child {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+  aspect-ratio: auto;
+}
+.pd-gallery-thumb:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+}
+.pd-gallery-thumb span {
+  font-size: 36px; opacity: 0.25;
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+}
+.pd-gallery-thumb:first-child span { font-size: 72px; }
+.pd-gallery-thumb:hover span { opacity: 0.45; transform: scale(1.08); }
+
+/* ── Actual image support (when real images are added) ── */
+.pd-gallery-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* overlay badge for image count */
+.pd-gallery-more {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 22px; font-weight: 700;
+  border-radius: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.pd-gallery-thumb:last-child:hover .pd-gallery-more { opacity: 1; }
+
+/* ── Lightbox ── */
+.pd-lightbox {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.92);
+  align-items: center; justify-content: center;
+}
+.pd-lightbox.open { display: flex; }
+.pd-lightbox-inner {
+  position: relative;
+  max-width: 900px; max-height: 90vh;
+  width: 90vw;
+  display: flex; flex-direction: column; align-items: center;
+}
+.pd-lightbox-img {
+  width: 100%; max-height: 78vh;
+  background: #1A1A1A; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.pd-lightbox-img img {
+  max-width: 100%; max-height: 78vh;
+  object-fit: contain; border-radius: 16px;
+}
+.pd-lightbox-img .lb-placeholder {
+  font-size: 120px; opacity: 0.18;
+}
+.pd-lightbox-caption {
+  margin-top: 16px; color: rgba(255,255,255,0.5);
+  font-size: 13px; letter-spacing: 0.3px;
+}
+.pd-lightbox-close {
+  position: absolute; top: -44px; right: 0;
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  font-size: 28px; cursor: pointer; line-height: 1;
+  transition: color 0.2s;
+}
+.pd-lightbox-close:hover { color: var(--saffron); }
+.pd-lightbox-nav {
+  display: flex; gap: 12px; margin-top: 20px;
+}
+.pd-lb-prev, .pd-lb-next {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.7); font-size: 18px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.pd-lb-prev:hover, .pd-lb-next:hover {
+  background: var(--saffron); border-color: var(--saffron); color: white;
+}
+.pd-lb-counter {
+  font-size: 13px; color: rgba(255,255,255,0.35);
+  display: flex; align-items: center; padding: 0 8px;
+}
+
+
+/* ── Spec Table ── */
+.pd-spec-table {
+  width: 100%; border-collapse: collapse;
+  margin: 20px 0; font-size: 14px;
+  border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.pd-spec-table thead tr { background: var(--steel); color: var(--white); }
+.pd-spec-table thead th {
+  padding: 11px 18px; text-align: left;
+  font-family: var(--font-display); font-size: 11px;
+  font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.pd-spec-table tbody tr { border-bottom: 1px solid var(--border); }
+.pd-spec-table tbody tr:last-child { border-bottom: none; }
+.pd-spec-table tbody tr:nth-child(even) { background: var(--off-white); }
+.pd-spec-table tbody td { padding: 11px 18px; vertical-align: top; line-height: 1.5; }
+.pd-spec-table tbody td:first-child {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--mid-grey); width: 38%;
+}
+.pd-spec-table tbody td:last-child { font-weight: 500; color: var(--steel); }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .pd-main-grid { grid-template-columns: 1fr; gap: 48px; }
+  .pd-gallery-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 768px) {
+  .pd-gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .pd-gallery-thumb:first-child { grid-column: 1 / 3; grid-row: 1 / 2; }
+}
+@media (max-width: 520px) {
+  .pd-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .pd-gallery-thumb:first-child { grid-column: 1 / -1; grid-row: 1; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- PAGE HERO (populated by JS) -->
+<div class="page-hero" id="pd-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-content container">
+    <nav class="breadcrumb" id="pd-breadcrumb">
+      <a href="index.html">Home</a><span>/</span>
+      <a href="products.html">Products</a><span>/</span>
+      <span id="pd-bc-name" style="color:rgba(255,255,255,0.55);"></span>
+    </nav>
+    <div style="font-size:72px;margin-bottom:16px;line-height:1;" id="pd-icon"></div>
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);font-weight:700;margin-bottom:10px;" id="pd-cat"></div>
+    <h1 class="page-hero-title" id="pd-title"></h1>
+    <p class="page-hero-sub" id="pd-hero-desc"></p>
+  </div>
+</div>
+
+<!-- DESCRIPTION + QUOTE SIDEBAR -->
+<section class="pd-section">
+  <div class="container">
+    <div class="pd-main-grid">
+
+      <!-- Description -->
+      <div class="pd-description-block">
+        <div class="pd-desc-title">About This Product</div>
+        <div class="pd-desc-text" id="pd-description"></div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="pd-sidebar">
+        <div class="pd-quote-box">
+          <div class="pd-quote-title">Request a Quote</div>
+          <div class="pd-quote-sub">Need this product? Share your quantity and specifications — we'll respond within 24 hours, India or abroad.</div>
+          <a id="pd-quote-btn" href="mailto:darshan@prarthanaindustries.com" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
+            Get a Quote <span class="btn-arrow">→</span>
+          </a>
+          <a href="https://wa.me/91XXXXXXXXXX" class="pd-cta-whatsapp">💬 WhatsApp Enquiry</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE GALLERY — 25 images -->
+<section class="pd-gallery-section">
+  <div class="container">
+    <div class="pd-desc-title pd-gallery-section-title" id="pd-gallery-title">Product Images</div>
+    <div class="pd-gallery-section-sub">Click any image to view full size.</div>
+    <div class="pd-gallery-grid" id="pd-gallery-grid"></div>
+  </div>
+</section>
+
+<!-- MORE PRODUCTS -->
+<section style="padding:64px 0;background:var(--white);">
+  <div class="container" style="text-align:center;">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:12px;">
+      <div class="eyebrow-line"></div><span class="eyebrow-text">Explore More</span><div class="eyebrow-line"></div>
+    </div>
+    <h2 class="section-title" style="margin-bottom:32px;">View Our Full <span class="accent">Product Range</span></h2>
+    <a href="products.html" class="btn btn-dark">Browse All Products <span class="btn-arrow">→</span></a>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="pd-lightbox" id="pd-lightbox">
+  <div class="pd-lightbox-inner">
+    <button class="pd-lightbox-close" id="lb-close">✕</button>
+    <div class="pd-lightbox-img" id="lb-img">
+      <span class="lb-placeholder" id="lb-icon"></span>
+    </div>
+    <div class="pd-lightbox-caption" id="lb-caption"></div>
+    <div class="pd-lightbox-nav">
+      <button class="pd-lb-prev" id="lb-prev">‹</button>
+      <span class="pd-lb-counter" id="lb-counter"></span>
+      <button class="pd-lb-next" id="lb-next">›</button>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="shared.js"></script>
+<script>
+/* ═══════════════════════════════════════════════
+   PRODUCT DATA — 16 Products
+   ═══════════════════════════════════════════════ */
+const PRODUCTS = {
+  'bevel-gear': {
+    icon: '▲', category: 'Gears & Racks', name: 'Bevel Gear',
+    heroDesc: 'High precision bevel gears for transmitting motion between intersecting shafts — manufactured using advanced milling machines and bevel gear generators for accurate tooth profile and smooth power transmission.',
+    heroImage: 'images/bevel-gear/bg01.jpeg',
+    images: [
+      { src: 'images/bevel-gear/bg01.jpeg', alt: 'Two matched bevel gear sets — miter gears' },
+      { src: 'images/bevel-gear/bg05.jpg', alt: 'Large bevel gear set with shaft — Prarthana Industries' },
+      { src: 'images/bevel-gear/bg02.jpeg', alt: 'Bevel gear and pinion pair — large crown wheel' },
+      { src: 'images/bevel-gear/bg10.jpeg', alt: 'Bevel gear close-up — machined teeth detail' },
+      { src: 'images/bevel-gear/bg03.jpg', alt: 'Single bevel gear — 30T 4 module' },
+      { src: 'images/bevel-gear/bg04.jpg', alt: 'Bevel gear and pinion on table' },
+      { src: 'images/bevel-gear/bg06.jpg', alt: 'Batch of bevel gears — production run' },
+      { src: 'images/bevel-gear/bg07.jpg', alt: 'Bevel gear set with bronze timing wheel' },
+      { src: 'images/bevel-gear/bg08.jpg', alt: 'Large painted bevel gear set' },
+      { src: 'images/bevel-gear/bg09.jpeg', alt: 'Four helical spur gears — painted finish' },
+    ],
+    description: `
+      <p>Prarthana Industries manufactures high precision Bevel Gears designed for transmitting motion between intersecting shafts. These gears are manufactured using advanced milling machines and bevel gear generators to ensure accurate tooth profile, smooth power transmission, and long operational life. They are suitable for heavy-duty industrial machinery and customized mechanical systems.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Module Range</td><td>1 Module to 8 Module</td></tr>
+        <tr><td>Diameter Range</td><td>25 mm to 450 mm</td></tr>
+        <tr><td>Teeth Type</td><td>Straight Teeth / Helical</td></tr>
+        <tr><td>Manufacturing Process</td><td>Milling Machine / Bevel Generator</td></tr>
+        <tr><td>Material</td><td>M.S., EN-8, Cr-5, EN-353</td></tr>
+        <tr><td>Heat Treatment</td><td>Available as per requirement</td></tr>
+      </tbody></table>
+      <p>Applications include industrial gearboxes, machine tools, automotive transmission systems, power transmission equipment, and engineering machinery. We serve OEM customers, maintenance departments, and project procurement across India and export to South-East Asia, the Middle East, and Europe.</p>
+    `
+  },
+  'chain-coupling': {
+    icon: '🔗', category: 'Couplings', name: 'Chain Coupling',
+    heroDesc: 'Chain couplings designed to connect two rotating shafts efficiently while transmitting torque — providing flexibility, easy installation, and reliable performance in industrial drive systems.',
+    heroImage: 'images/chain-coupling/cc01.jpeg',
+    images: [
+      { src: 'images/chain-coupling/cc01.jpeg', alt: 'Chain Coupling img 1, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc02.jpeg', alt: 'Chain Coupling img 2, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc03.jpeg', alt: 'Chain Coupling img 3, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc04.jpeg', alt: 'Chain Coupling img 4, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc05.jpg', alt: 'Chain Coupling img 5, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc06.jpeg', alt: 'Chain Coupling img 6, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc07.jpg', alt: 'Chain Coupling img 7, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc08.jpg', alt: 'Chain Coupling img 8, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc09.jpg', alt: 'Chain Coupling img 9, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc10.jpeg', alt: 'Chain Coupling img 10, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc11.jpeg', alt: 'Chain Coupling img 11, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc12.jpeg', alt: 'Chain Coupling img 12, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc13.jpeg', alt: 'Chain Coupling img 13, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc14.jpeg', alt: 'Chain Coupling img 14, Prarthana Industries' },
+      { src: 'images/chain-coupling/cc15.jpeg', alt: 'Chain Coupling img 15, Prarthana Industries' },
+    ],
+    description: `
+      <p>Prarthana Industries offers durable Chain Couplings designed to connect two shafts efficiently while transmitting power. These couplings provide high torque capacity and easy installation, making them ideal for heavy-duty industrial machinery.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Chain Pitch</td><td>1/2", 5/8", 3/4", 1"</td></tr>
+        <tr><td>Bore Range</td><td>15 mm to 75 mm</td></tr>
+        <tr><td>Cover Type</td><td>With or Without Aluminium Cover</td></tr>
+        <tr><td>Chain Type</td><td>Diamond / Renold or equivalent</td></tr>
+      </tbody></table>
+      <p>Applications include conveyor drives, pumps and compressors, industrial machinery, and material handling systems. We supply chain couplings in standard and custom configurations with custom bore and keyway dimensions machined to your drawings.</p>
+    `
+  },
+  'customised-parts': {
+    icon: '🔧', category: 'Custom & Special', name: 'Customised Parts',
+    heroDesc: 'Precision machined customized engineering components manufactured as per customer drawings or samples — any ferrous and non-ferrous material, from single pieces to large batch production.',
+    heroImage: 'images/customised-parts/cp01.jpg',
+    images: [
+      { src: 'images/customised-parts/cp01.jpg', alt: 'Customised Parts img 1, Prarthana Industries' },
+      { src: 'images/customised-parts/cp02.jpg', alt: 'Customised Parts img 2, Prarthana Industries' },
+      { src: 'images/customised-parts/cp03.jpg', alt: 'Customised Parts img 3, Prarthana Industries' },
+      { src: 'images/customised-parts/cp04.jpg', alt: 'Customised Parts img 4, Prarthana Industries' },
+      { src: 'images/customised-parts/cp05.jpg', alt: 'Customised Parts img 5, Prarthana Industries' },
+      { src: 'images/customised-parts/cp06.jpg', alt: 'Customised Parts img 6, Prarthana Industries' },
+      { src: 'images/customised-parts/cp07.jpg', alt: 'Customised Parts img 7, Prarthana Industries' },
+      { src: 'images/customised-parts/cp08.jpg', alt: 'Customised Parts img 8, Prarthana Industries' },
+      { src: 'images/customised-parts/cp09.jpg', alt: 'Customised Parts img 9, Prarthana Industries' },
+      { src: 'images/customised-parts/cp10.jpg', alt: 'Customised Parts img 10, Prarthana Industries' },
+      { src: 'images/customised-parts/cp11.jpg', alt: 'Customised Parts img 11, Prarthana Industries' },
+      { src: 'images/customised-parts/cp12.jpg', alt: 'Customised Parts img 12, Prarthana Industries' },
+      { src: 'images/customised-parts/cp13.jpg', alt: 'Customised Parts img 13, Prarthana Industries' },
+      { src: 'images/customised-parts/cp14.jpg', alt: 'Customised Parts img 14, Prarthana Industries' },
+      { src: 'images/customised-parts/cp15.jpg', alt: 'Customised Parts img 15, Prarthana Industries' },
+      { src: 'images/customised-parts/cp16.jpg', alt: 'Customised Parts img 16, Prarthana Industries' },
+      { src: 'images/customised-parts/cp17.jpg', alt: 'Customised Parts img 17, Prarthana Industries' },
+      { src: 'images/customised-parts/cp18.jpeg', alt: 'Customised Parts img 18, Prarthana Industries' },
+      { src: 'images/customised-parts/cp19.jpeg', alt: 'Customised Parts img 19, Prarthana Industries' },
+      { src: 'images/customised-parts/cp20.jpeg', alt: 'Customised Parts img 20, Prarthana Industries' },
+      { src: 'images/customised-parts/cp21.jpeg', alt: 'Customised Parts img 21, Prarthana Industries' },
+      { src: 'images/customised-parts/cp22.jpeg', alt: 'Customised Parts img 22, Prarthana Industries' },
+      { src: 'images/customised-parts/cp23.jpeg', alt: 'Customised Parts img 23, Prarthana Industries' },
+      { src: 'images/customised-parts/cp24.jpeg', alt: 'Customised Parts img 24, Prarthana Industries' },
+      { src: 'images/customised-parts/cp25.jpeg', alt: 'Customised Parts img 25, Prarthana Industries' },
+      { src: 'images/customised-parts/cp26.jpeg', alt: 'Customised Parts img 26, Prarthana Industries' },
+      { src: 'images/customised-parts/cp27.jpeg', alt: 'Customised Parts img 27, Prarthana Industries' },
+      { src: 'images/customised-parts/cp28.jpeg', alt: 'Customised Parts img 28, Prarthana Industries' },
+    ],
+      description: `
+      <p>Prarthana Industries specializes in manufacturing Customized Engineering Parts based on customer drawings or samples. Our manufacturing capabilities allow us to produce precision components in various materials to meet unique industrial requirements.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Manufacturing Basis</td><td>As per Drawing or Sample</td></tr>
+        <tr><td>Material</td><td>All Ferrous &amp; Non-Ferrous Materials</td></tr>
+        <tr><td>Raw Material Form</td><td>Solid Material / Casting</td></tr>
+        <tr><td>Production Capability</td><td>Small to Large Batch Production</td></tr>
+      </tbody></table>
+      <p>Applications include special purpose machines, industrial automation systems, maintenance replacement parts, and engineering equipment. Our experienced engineering team reviews your drawings to ensure manufacturability and advises on material selection or tolerances where needed.</p>
+    `
+  },
+  'food-machining-parts': {
+    icon: '🏭', category: 'Custom & Special', name: 'Food Machining Parts',
+    heroDesc: 'Durable and reliable components used in food processing machines — designed to provide smooth performance and long service life in food production environments.',
+    heroImage: 'images/customised-parts/cp01.jpeg',
+images: [
+  { src: 'images/food-machining-parts/fmp01.jpeg', alt: 'Food Machining Part img 1, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp02.jpeg', alt: 'Food Machining Part img 2, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp03.jpeg', alt: 'Food Machining Part img 3, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp04.jpeg', alt: 'Food Machining Part img 4, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp05.jpeg', alt: 'Food Machining Part img 5, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp06.jpeg', alt: 'Food Machining Part img 6, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp07.jpeg', alt: 'Food Machining Part img 7, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp08.jpeg', alt: 'Food Machining Part img 8, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp09.jpg', alt: 'Food Machining Part img 9, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp10.jpg', alt: 'Food Machining Part img 10, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp11.jpg', alt: 'Food Machining Part img 11, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp12.jpg', alt: 'Food Machining Part img 12, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp13.jpg', alt: 'Food Machining Part img 13, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp14.jpg', alt: 'Food Machining Part img 14, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp15.jpg', alt: 'Food Machining Part img 15, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp16.jpg', alt: 'Food Machining Part img 16, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp17.jpg', alt: 'Food Machining Part img 17, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp18.jpg', alt: 'Food Machining Part img 18, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp19.jpg', alt: 'Food Machining Part img 19, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp20.jpg', alt: 'Food Machining Part img 20, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp21.jpg', alt: 'Food Machining Part img 21, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp22.jpg', alt: 'Food Machining Part img 22, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp23.jpg', alt: 'Food Machining Part img 23, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp24.jpg', alt: 'Food Machining Part img 24, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp25.jpg', alt: 'Food Machining Part img 25, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp26.jpg', alt: 'Food Machining Part img 26, Prarthana Industries' },
+  { src: 'images/food-machining-parts/fmp27.jpg', alt: 'Food Machining Part img 27, Prarthana Industries' },
+],
+    description: `
+      <p>We manufacture high-quality Food Processing Machine Parts designed for durability and hygienic operation. These components are widely used in food machinery such as roti, papad, and sevaiya making machines.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Application</td><td>Food Processing Machines</td></tr>
+        <tr><td>Machine Type</td><td>Roti, Papad, Sevaiya, Kneader, Velan Machine</td></tr>
+        <tr><td>Material</td><td>Industrial grade metals suitable for food machinery</td></tr>
+        <tr><td>Customization</td><td>Available as per machine design</td></tr>
+      </tbody></table>
+      <p>Applications span the food processing industry including automatic roti making machines, papad manufacturing machines, and sevaiya production machines. We supply food machinery component manufacturers and end-users across India and export internationally.</p>
+    `
+  },
+  'geneva': {
+    icon: '⬤', category: 'Gears & Racks', name: 'Geneva',
+    heroDesc: 'Geneva mechanisms that convert continuous motion into intermittent motion — widely used in indexing systems and automation machinery with 4, 6, 8 and 12 indexing options.',
+    heroImage: 'images/customised-parts/cp01.jpeg',
+images: [
+  { src: 'images/geneva/g01.jpeg', alt: 'Geneva Part img 1, Prarthana Industries' },
+  { src: 'images/geneva/g02.jpeg', alt: 'Geneva Part img 2, Prarthana Industries' },
+  { src: 'images/geneva/g03.jpeg', alt: 'Geneva Part img 3, Prarthana Industries' },
+  { src: 'images/geneva/g04.jpeg', alt: 'Geneva Part img 4, Prarthana Industries' },
+  { src: 'images/geneva/g05.jpeg', alt: 'Geneva Part img 5, Prarthana Industries' },
+  { src: 'images/geneva/g06.jpeg', alt: 'Geneva Part img 6, Prarthana Industries' },
+  { src: 'images/geneva/g07.jpeg', alt: 'Geneva Part img 7, Prarthana Industries' },
+  { src: 'images/geneva/g08.jpeg', alt: 'Geneva Part img 8, Prarthana Industries' },
+  { src: 'images/geneva/g09.jpeg', alt: 'Geneva Part img 9, Prarthana Industries' },
+  { src: 'images/geneva/g10.jpeg', alt: 'Geneva Part img 10, Prarthana Industries' },
+  { src: 'images/geneva/g11.jpeg', alt: 'Geneva Part img 11, Prarthana Industries' },
+  { src: 'images/geneva/g12.jpeg', alt: 'Geneva Part img 12, Prarthana Industries' },
+  { src: 'images/geneva/g13.jpeg', alt: 'Geneva Part img 13, Prarthana Industries' },
+  { src: 'images/geneva/g14.jpeg', alt: 'Geneva Part img 14, Prarthana Industries' },
+  { src: 'images/geneva/g15.jpeg', alt: 'Geneva Part img 15, Prarthana Industries' },
+  { src: 'images/geneva/g16.jpeg', alt: 'Geneva Part img 16, Prarthana Industries' },
+  { src: 'images/geneva/g17.jpeg', alt: 'Geneva Part img 17, Prarthana Industries' },
+  { src: 'images/geneva/g18.jpeg', alt: 'Geneva Part img 18, Prarthana Industries' },
+  { src: 'images/geneva/g19.jpeg', alt: 'Geneva Part img 19, Prarthana Industries' },
+  { src: 'images/geneva/g20.jpeg', alt: 'Geneva Part img 20, Prarthana Industries' },
+  { src: 'images/geneva/g21.jpeg', alt: 'Geneva Part img 21, Prarthana Industries' },
+  { src: 'images/geneva/g22.jpeg', alt: 'Geneva Part img 22, Prarthana Industries' },
+  { src: 'images/geneva/g23.jpg', alt: 'Geneva Part img 23, Prarthana Industries' },
+  { src: 'images/geneva/g24.jpg', alt: 'Geneva Part img 24, Prarthana Industries' },
+  { src: 'images/geneva/g25.jpg', alt: 'Geneva Part img 25, Prarthana Industries' },
+  { src: 'images/geneva/g26.jpg', alt: 'Geneva Part img 26, Prarthana Industries' },
+  { src: 'images/geneva/g27.jpg', alt: 'Geneva Part img 27, Prarthana Industries' },
+  { src: 'images/geneva/g28.jpg', alt: 'Geneva Part img 28, Prarthana Industries' },
+  { src: 'images/geneva/g29.jpg', alt: 'Geneva Part img 29, Prarthana Industries' },
+  { src: 'images/geneva/g30.jpg', alt: 'Geneva Part img 30, Prarthana Industries' },
+  { src: 'images/geneva/g31.jpg', alt: 'Geneva Part img 31, Prarthana Industries' },
+  { src: 'images/geneva/g32.jpg', alt: 'Geneva Part img 32, Prarthana Industries' },
+  { src: 'images/geneva/g33.jpg', alt: 'Geneva Part img 33, Prarthana Industries' },
+  { src: 'images/geneva/g34.jpg', alt: 'Geneva Part img 34, Prarthana Industries' },
+  { src: 'images/geneva/g35.jpg', alt: 'Geneva Part img 35, Prarthana Industries' },
+  { src: 'images/geneva/g36.jpg', alt: 'Geneva Part img 36, Prarthana Industries' },
+  { src: 'images/geneva/g37.jpg', alt: 'Geneva Part img 37, Prarthana Industries' },
+  { src: 'images/geneva/g38.jpg', alt: 'Geneva Part img 38, Prarthana Industries' },
+  { src: 'images/geneva/g39.jpg', alt: 'Geneva Part img 39, Prarthana Industries' },
+  { src: 'images/geneva/g40.jpg', alt: 'Geneva Part img 40, Prarthana Industries' },
+  { src: 'images/geneva/g41.jpg', alt: 'Geneva Part img 41, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries provides precision-engineered Geneva Mechanisms used for intermittent motion control in industrial automation systems. Available in standard indexing options with durable hardened components.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Indexing Options</td><td>4, 6, 8, 12</td></tr>
+        <tr><td>Material</td><td>C-45 Steel</td></tr>
+        <tr><td>Heat Treatment</td><td>Hardened and Ground</td></tr>
+        <tr><td>Assembly</td><td>Standard Bearings and Input/Output Shaft</td></tr>
+        <tr><td>Customization</td><td>Available as per required indexing design</td></tr>
+      </tbody></table>
+      <p>Applications include packaging machines, indexing tables, automation systems, and textile machinery. We supply Geneva drives as individual components or as matched sets, with custom centre-to-centre distances and bore configurations available to suit your machine design.</p>
+    `
+  },
+  'helical-gear': {
+    icon: '⚙️', category: 'Gears & Racks', name: 'Helical Gear',
+    heroDesc: 'Helical Gears designed for smooth and quiet power transmission — offering higher load carrying capacity and improved efficiency compared to standard spur gears.',
+    heroImage: 'images/customised-parts/cp01.jpg',
+images: [
+  { src: 'images/helical-gear/hg01.jpg', alt: 'Helical Gear img 1, Prarthana Industries' },
+  { src: 'images/helical-gear/hg02.jpeg', alt: 'Helical Gear img 2, Prarthana Industries' },
+  { src: 'images/helical-gear/hg03.jpeg', alt: 'Helical Gear img 3, Prarthana Industries' },
+  { src: 'images/helical-gear/hg04.jpeg', alt: 'Helical Gear img 4, Prarthana Industries' },
+  { src: 'images/helical-gear/hg05.jpeg', alt: 'Helical Gear img 5, Prarthana Industries' },
+  { src: 'images/helical-gear/hg06.jpeg', alt: 'Helical Gear img 6, Prarthana Industries' },
+  { src: 'images/helical-gear/hg07.jpeg', alt: 'Helical Gear img 7, Prarthana Industries' },
+  { src: 'images/helical-gear/hg08.jpeg', alt: 'Helical Gear img 8, Prarthana Industries' },
+  { src: 'images/helical-gear/hg09.jpeg', alt: 'Helical Gear img 9, Prarthana Industries' },
+  { src: 'images/helical-gear/hg10.jpeg', alt: 'Helical Gear img 10, Prarthana Industries' },
+  { src: 'images/helical-gear/hg11.jpeg', alt: 'Helical Gear img 11, Prarthana Industries' },
+  { src: 'images/helical-gear/hg12.jpg', alt: 'Helical Gear img 12, Prarthana Industries' },
+  { src: 'images/helical-gear/hg13.jpg', alt: 'Helical Gear img 13, Prarthana Industries' },
+  { src: 'images/helical-gear/hg14.jpg', alt: 'Helical Gear img 14, Prarthana Industries' },
+  { src: 'images/helical-gear/hg15.jpg', alt: 'Helical Gear img 15, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures Helical Gears designed for smooth and silent power transmission. These gears provide higher load carrying capacity and are widely used in heavy industrial equipment.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Module Range</td><td>1 Module to 12 Module</td></tr>
+        <tr><td>Diameter Range</td><td>25 mm to 2000 mm</td></tr>
+        <tr><td>Gear Type</td><td>Helical Gear</td></tr>
+        <tr><td>Material</td><td>Various industrial grade materials</td></tr>
+      </tbody></table>
+      <p>Applications include heavy duty gearboxes, steel plants, cement plants, and industrial machinery. We serve OEM customers and supply replacement gears for existing machinery across India and internationally.</p>
+    `
+  },
+  'industrial-gear': {
+    icon: '⛏️', category: 'Gears & Racks', name: 'Industrial Gear',
+    heroDesc: 'Wide range of Industrial Gears designed for high torque transmission and demanding industrial environments — precision machined from 1 Module to 16 Module, up to 3000 mm diameter.',
+    images: [
+  { src: 'images/industrial-gear/ig01.jpg', alt: 'Industrial Gear img 1, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig02.jpeg', alt: 'Industrial Gear img 2, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig03.jpeg', alt: 'Industrial Gear img 3, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig04.jpeg', alt: 'Industrial Gear img 4, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig05.jpeg', alt: 'Industrial Gear img 5, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig06.jpeg', alt: 'Industrial Gear img 6, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig07.jpeg', alt: 'Industrial Gear img 7, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig08.jpeg', alt: 'Industrial Gear img 8, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig09.jpeg', alt: 'Industrial Gear img 9, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig10.jpg', alt: 'Industrial Gear img 10, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig11.jpg', alt: 'Industrial Gear img 11, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig12.jpg', alt: 'Industrial Gear img 12, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig13.jpg', alt: 'Industrial Gear img 13, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig14.jpg', alt: 'Industrial Gear img 14, Prarthana Industries' },
+  { src: 'images/industrial-gear/ig15.jpg', alt: 'Industrial Gear img 15, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures Industrial Gears suitable for a wide range of heavy-duty industrial applications. These gears are engineered with high precision to ensure reliable power transmission.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Module Range</td><td>1 Module to 16 Module</td></tr>
+        <tr><td>Diameter Range</td><td>25 mm to 3000 mm</td></tr>
+        <tr><td>Material</td><td>Various Alloy Steel and Mild Steel Grades</td></tr>
+        <tr><td>Manufacturing</td><td>Precision Gear Cutting</td></tr>
+      </tbody></table>
+      <p>Applications include mining equipment, rolling mills, heavy machinery, and industrial gear systems. We support prototype development through to bulk production for OEM manufacturers across India and for international export with consistent quality and reliable lead times.</p>
+    `
+  },
+  'industrial-sprockets': {
+    icon: '🟠', category: 'Gears & Racks', name: 'Industrial Sprockets',
+    heroDesc: 'Industrial Sprockets designed for efficient chain drive systems — manufactured with high accuracy to ensure proper chain engagement and smooth motion in standard or custom configurations.',
+    images: [
+  { src: 'images/industrial-sprockets/is01.jpg', alt: 'Industrial Sprocket img 1, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is02.jpeg', alt: 'Industrial Sprocket img 2, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is03.jpeg', alt: 'Industrial Sprocket img 3, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is04.jpeg', alt: 'Industrial Sprocket img 4, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is05.jpeg', alt: 'Industrial Sprocket img 5, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is06.jpeg', alt: 'Industrial Sprocket img 6, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is07.jpeg', alt: 'Industrial Sprocket img 7, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is08.jpeg', alt: 'Industrial Sprocket img 8, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is09.jpeg', alt: 'Industrial Sprocket img 9, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is10.jpeg', alt: 'Industrial Sprocket img 10, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is11.jpg', alt: 'Industrial Sprocket img 11, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is12.jpg', alt: 'Industrial Sprocket img 12, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is13.jpg', alt: 'Industrial Sprocket img 13, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is14.jpg', alt: 'Industrial Sprocket img 14, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is15.jpg', alt: 'Industrial Sprocket img 15, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is16.jpg', alt: 'Industrial Sprocket img 16, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is17.jpg', alt: 'Industrial Sprocket img 17, Prarthana Industries' },
+  { src: 'images/industrial-sprockets/is18.jpg', alt: 'Industrial Sprocket img 18, Prarthana Industries' },
+],
+    description: `
+      <p>Our Industrial Sprockets are manufactured with high-quality materials and precision machining to ensure smooth chain movement and reliable performance in industrial systems.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Pitch</td><td>1/2" to 1.5"</td></tr>
+        <tr><td>Outer Diameter</td><td>50 mm to 2000 mm</td></tr>
+        <tr><td>Material</td><td>M.S., EN-8, Cast Iron, SG Iron</td></tr>
+        <tr><td>Manufacturing</td><td>Standard or as per Drawing</td></tr>
+      </tbody></table>
+      <p>Applications include conveyor systems, agricultural machinery, packaging equipment, and industrial chain drives. We supply to maintenance departments, OEM manufacturers, and project procurement teams across India and for international export.</p>
+    `
+  },
+  'rack-and-pinion': {
+    icon: '📐', category: 'Gears & Racks', name: 'Rack and Pinion',
+    heroDesc: 'Rack and Pinion systems used to convert rotary motion into linear motion with high precision and efficiency — module 1 to 16, rack lengths up to 3 metres, spur and helical.',
+    images: [
+  { src: 'images/rack-and-pinion/rap01.jpeg', alt: 'Rack And Pinion img 1, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap02.jpeg', alt: 'Rack And Pinion img 2, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap03.jpeg', alt: 'Rack And Pinion img 3, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap04.jpeg', alt: 'Rack And Pinion img 4, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap05.jpeg', alt: 'Rack And Pinion img 5, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap06.jpeg', alt: 'Rack And Pinion img 6, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap07.jpeg', alt: 'Rack And Pinion img 7, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap08.jpeg', alt: 'Rack And Pinion img 8, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap09.jpeg', alt: 'Rack And Pinion img 9, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap10.jpeg', alt: 'Rack And Pinion img 10, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap11.jpeg', alt: 'Rack And Pinion img 11, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap12.jpeg', alt: 'Rack And Pinion img 12, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap13.jpeg', alt: 'Rack And Pinion img 13, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap14.jpeg', alt: 'Rack And Pinion img 14, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap15.jpeg', alt: 'Rack And Pinion img 15, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap16.jpeg', alt: 'Rack And Pinion img 16, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap17.jpeg', alt: 'Rack And Pinion img 17, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap18.jpeg', alt: 'Rack And Pinion img 18, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap19.jpeg', alt: 'Rack And Pinion img 19, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap20.jpeg', alt: 'Rack And Pinion img 20, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap21.jpeg', alt: 'Rack And Pinion img 21, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap22.jpeg', alt: 'Rack And Pinion img 22, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap23.jpeg', alt: 'Rack And Pinion img 23, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap24.jpeg', alt: 'Rack And Pinion img 24, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap25.jpeg', alt: 'Rack And Pinion img 25, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap26.jpeg', alt: 'Rack And Pinion img 26, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap27.jpeg', alt: 'Rack And Pinion img 27, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap28.jpeg', alt: 'Rack And Pinion img 28, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap29.jpeg', alt: 'Rack And Pinion img 29, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap30.jpeg', alt: 'Rack And Pinion img 30, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap31.jpeg', alt: 'Rack And Pinion img 31, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap32.jpeg', alt: 'Rack And Pinion img 32, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap33.jpeg', alt: 'Rack And Pinion img 33, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap34.jpeg', alt: 'Rack And Pinion img 34, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap35.jpeg', alt: 'Rack And Pinion img 35, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap36.jpeg', alt: 'Rack And Pinion img 36, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap37.jpeg', alt: 'Rack And Pinion img 37, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap38.jpeg', alt: 'Rack And Pinion img 38, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap39.jpeg', alt: 'Rack And Pinion img 39, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap40.jpeg', alt: 'Rack And Pinion img 40, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap41.jpeg', alt: 'Rack And Pinion img 41, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap42.jpeg', alt: 'Rack And Pinion img 42, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap43.jpeg', alt: 'Rack And Pinion img 43, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap44.jpeg', alt: 'Rack And Pinion img 44, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap45.jpeg', alt: 'Rack And Pinion img 45, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap46.jpeg', alt: 'Rack And Pinion img 46, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap47.jpeg', alt: 'Rack And Pinion img 47, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap48.jpeg', alt: 'Rack And Pinion img 48, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap49.jpeg', alt: 'Rack And Pinion img 49, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap50.jpeg', alt: 'Rack And Pinion img 50, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap51.jpeg', alt: 'Rack And Pinion img 51, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap52.jpeg', alt: 'Rack And Pinion img 52, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap53.jpeg', alt: 'Rack And Pinion img 53, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap54.jpeg', alt: 'Rack And Pinion img 54, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap55.jpeg', alt: 'Rack And Pinion img 55, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap56.jpeg', alt: 'Rack And Pinion img 56, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap57.jpeg', alt: 'Rack And Pinion img 57, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap58.jpeg', alt: 'Rack And Pinion img 58, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap59.jpeg', alt: 'Rack And Pinion img 59, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap60.jpeg', alt: 'Rack And Pinion img 60, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap61.jpeg', alt: 'Rack And Pinion img 61, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap62.jpeg', alt: 'Rack And Pinion img 62, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap63.jpeg', alt: 'Rack And Pinion img 63, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap64.jpeg', alt: 'Rack And Pinion img 64, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap65.jpeg', alt: 'Rack And Pinion img 65, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap66.jpeg', alt: 'Rack And Pinion img 66, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap67.jpeg', alt: 'Rack And Pinion img 67, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap68.jpeg', alt: 'Rack And Pinion img 68, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap69.jpeg', alt: 'Rack And Pinion img 69, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap70.jpeg', alt: 'Rack And Pinion img 70, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap71.jpg', alt: 'Rack And Pinion img 71, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap72.jpg', alt: 'Rack And Pinion img 72, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap73.jpg', alt: 'Rack And Pinion img 73, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap74.jpg', alt: 'Rack And Pinion img 74, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap75.jpg', alt: 'Rack And Pinion img 75, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap76.jpg', alt: 'Rack And Pinion img 76, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap77.jpg', alt: 'Rack And Pinion img 77, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap78.jpg', alt: 'Rack And Pinion img 78, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap79.jpg', alt: 'Rack And Pinion img 79, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap80.jpg', alt: 'Rack And Pinion img 80, Prarthana Industries' },
+  { src: 'images/rack-and-pinion/rap81.jpg', alt: 'Rack And Pinion img 81, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries produces precision Rack and Pinion Systems used for converting rotational motion into linear motion. These systems offer high efficiency and smooth operation.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Module Range</td><td>1 Module to 16 Module</td></tr>
+        <tr><td>Rack Length</td><td>Up to 3 Metres</td></tr>
+        <tr><td>Gear Type</td><td>Spur / Helical</td></tr>
+        <tr><td>Material</td><td>M.S., EN-8</td></tr>
+        <tr><td>Additional Features</td><td>Drilling and Teeth Hardening available</td></tr>
+      </tbody></table>
+      <p>Applications include CNC machines, industrial automation, lifting mechanisms, and machine tools. We supply rack and pinion sets across India and export internationally with full technical documentation available on request.</p>
+    `
+  },
+  'spiral-bevel-gear': {
+    icon: '〰️', category: 'Gears & Racks', name: 'Spiral Bevel Gear',
+    heroDesc: 'Spiral Bevel Gears providing smooth and efficient power transmission between intersecting shafts — precision manufactured for excellent performance under heavy load conditions.',
+    images: [
+  { src: 'images/spiral-bevel-gear/sbg01.jpg', alt: 'Spiral Bevel Gear img 1, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg02.jpeg', alt: 'Spiral Bevel Gear img 2, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg03.jpeg', alt: 'Spiral Bevel Gear img 3, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg04.jpeg', alt: 'Spiral Bevel Gear img 4, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg05.jpeg', alt: 'Spiral Bevel Gear img 5, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg06.jpeg', alt: 'Spiral Bevel Gear img 6, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg07.jpeg', alt: 'Spiral Bevel Gear img 7, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg08.jpg', alt: 'Spiral Bevel Gear img 8, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg09.jpg', alt: 'Spiral Bevel Gear img 9, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg10.jpg', alt: 'Spiral Bevel Gear img 10, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg11.jpg', alt: 'Spiral Bevel Gear img 11, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg12.jpg', alt: 'Spiral Bevel Gear img 12, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg13.jpg', alt: 'Spiral Bevel Gear img 13, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg14.jpg', alt: 'Spiral Bevel Gear img 14, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg15.jpg', alt: 'Spiral Bevel Gear img 15, Prarthana Industries' },
+  { src: 'images/spiral-bevel-gear/sbg16.jpg', alt: 'Spiral Bevel Gear img 16, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures Spiral Bevel Gears designed for high torque transmission and smooth operation between intersecting shafts. These gears are widely used in heavy industrial drives.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Module Range</td><td>1 Module to 8 Module</td></tr>
+        <tr><td>Diameter Range</td><td>50 mm to 400 mm</td></tr>
+        <tr><td>Material</td><td>M.S., EN-8, Cr-5, EN-353</td></tr>
+        <tr><td>Manufacturing</td><td>Milling and Bevel Generator</td></tr>
+        <tr><td>Heat Treatment</td><td>With or Without Hardening</td></tr>
+      </tbody></table>
+      <p>Applications include automotive differential systems, industrial drives, and heavy engineering machinery. All spiral bevel gears are manufactured from customer-supplied drawings or specifications. Matched gear sets are supplied and can be accompanied by material test certificates and inspection reports.</p>
+    `
+  },
+  'spiral-jaw-clutch': {
+    icon: '🔄', category: 'Couplings', name: 'Spiral Jaw Clutch Coupling',
+    heroDesc: 'Spiral Jaw Clutch Couplings providing reliable torque transmission while accommodating slight shaft misalignment — available in 3 jaw and 4 jaw configurations with bore range 20 mm to 150 mm.',
+    images: [
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc01.jpg', alt: 'Spiral Jaw Clutch Coupling img 1, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc02.jpeg', alt: 'Spiral Jaw Clutch Coupling img 2, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc03.jpeg', alt: 'Spiral Jaw Clutch Coupling img 3, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc04.jpeg', alt: 'Spiral Jaw Clutch Coupling img 4, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc05.jpeg', alt: 'Spiral Jaw Clutch Coupling img 5, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc06.jpeg', alt: 'Spiral Jaw Clutch Coupling img 6, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc07.jpeg', alt: 'Spiral Jaw Clutch Coupling img 7, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc08.jpeg', alt: 'Spiral Jaw Clutch Coupling img 8, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc09.jpeg', alt: 'Spiral Jaw Clutch Coupling img 9, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc10.jpeg', alt: 'Spiral Jaw Clutch Coupling img 10, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc11.jpeg', alt: 'Spiral Jaw Clutch Coupling img 11, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc12.jpeg', alt: 'Spiral Jaw Clutch Coupling img 12, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc13.jpeg', alt: 'Spiral Jaw Clutch Coupling img 13, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc14.jpeg', alt: 'Spiral Jaw Clutch Coupling img 14, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc15.jpeg', alt: 'Spiral Jaw Clutch Coupling img 15, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc16.jpeg', alt: 'Spiral Jaw Clutch Coupling img 16, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc17.jpg', alt: 'Spiral Jaw Clutch Coupling img 17, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc18.jpg', alt: 'Spiral Jaw Clutch Coupling img 18, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc19.jpg', alt: 'Spiral Jaw Clutch Coupling img 19, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc20.jpg', alt: 'Spiral Jaw Clutch Coupling img 20, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc21.jpg', alt: 'Spiral Jaw Clutch Coupling img 21, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc22.jpg', alt: 'Spiral Jaw Clutch Coupling img 22, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc23.jpg', alt: 'Spiral Jaw Clutch Coupling img 23, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc24.jpg', alt: 'Spiral Jaw Clutch Coupling img 24, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc25.jpg', alt: 'Spiral Jaw Clutch Coupling img 25, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc26.jpg', alt: 'Spiral Jaw Clutch Coupling img 26, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc27.jpg', alt: 'Spiral Jaw Clutch Coupling img 27, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc28.jpg', alt: 'Spiral Jaw Clutch Coupling img 28, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc29.jpg', alt: 'Spiral Jaw Clutch Coupling img 29, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc30.jpg', alt: 'Spiral Jaw Clutch Coupling img 30, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc31.jpg', alt: 'Spiral Jaw Clutch Coupling img 31, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc32.jpg', alt: 'Spiral Jaw Clutch Coupling img 32, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc33.jpg', alt: 'Spiral Jaw Clutch Coupling img 33, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc34.jpg', alt: 'Spiral Jaw Clutch Coupling img 34, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc35.jpg', alt: 'Spiral Jaw Clutch Coupling img 35, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc36.jpg', alt: 'Spiral Jaw Clutch Coupling img 36, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc37.jpg', alt: 'Spiral Jaw Clutch Coupling img 37, Prarthana Industries' },
+  { src: 'images/spiral-jaw-clutch-coupling/sjcc38.jpg', alt: 'Spiral Jaw Clutch Coupling img 38, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries offers robust Spiral Jaw Clutch Couplings designed to transmit torque efficiently while accommodating minor shaft misalignment.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Jaw Type</td><td>3 Jaw / 4 Jaw</td></tr>
+        <tr><td>Bore Range</td><td>20 mm to 150 mm</td></tr>
+        <tr><td>Material</td><td>M.S., Cast Steel, EN-8</td></tr>
+        <tr><td>Customization</td><td>Available as per Drawing</td></tr>
+      </tbody></table>
+      <p>Applications include motor drives, pumps and compressors, and industrial machinery. We manufacture to customer drawings and can advise on jaw geometry and material selection for your specific duty cycle. Single units and batch quantities are both available.</p>
+    `
+  },
+  'taper-lock-bush': {
+    icon: '🔐', category: 'Pulleys & Belts', name: 'Taper Lock Bush, Weld Hub & QD Bush',
+    heroDesc: 'Complete range of Taper Lock Bushes, Weld Hubs, and QD Bushes allowing quick and secure mounting of pulleys and sprockets onto shafts — bush numbers 1008 to 6050, bore 10 mm to 150 mm.',
+    images: [
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb01.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 1, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb02.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 2, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb03.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 3, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb04.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 4, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb05.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 5, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb06.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 6, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb07.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 7, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb08.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 8, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb09.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 9, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb10.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 10, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb11.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 11, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb12.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 12, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb13.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 13, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb14.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 14, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb15.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 15, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb16.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 16, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb17.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 17, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb18.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 18, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb19.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 19, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb20.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 20, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb21.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 21, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb22.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 22, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb23.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 23, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb24.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 24, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb25.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 25, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb26.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 26, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb27.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 27, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb28.jpeg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 28, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb29.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 29, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb30.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 30, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb31.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 31, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb32.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 32, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb33.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 33, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb34.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 34, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb35.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 35, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb36.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 36, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb37.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 37, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb38.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 38, Prarthana Industries' },
+  { src: 'images/taper-lock-bush-weld-hub-and-qd-bush/tlb39.jpg', alt: 'Taper Lock Bush Weld Hub And QD Bush img 39, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries provides Taper Lock Bushes, QD Bushes and Weld Hubs designed for easy installation and secure shaft mounting in various mechanical transmission systems.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Bush Number Range</td><td>1008 to 6050</td></tr>
+        <tr><td>Bore Range</td><td>10 mm to 150 mm</td></tr>
+        <tr><td>Type</td><td>Taper Lock Bush / QD Bush</td></tr>
+        <tr><td>Additional Option</td><td>Weld Hub Available</td></tr>
+      </tbody></table>
+      <p>Applications include pulley mounting, sprocket installation, and industrial power transmission systems. All products are supplied to industrial users, OEM manufacturers, and MRO procurement across India and for international export.</p>
+    `
+  },
+  'taper-lock-pulley': {
+    icon: '🔵', category: 'Pulleys & Belts', name: 'Taper Lock Pulley',
+    heroDesc: 'Taper Lock Pulleys designed for efficient belt drive transmission — providing easy installation and strong shaft grip using taper lock bush systems, 100 mm to 1500 mm outer diameter.',
+    images: [
+  { src: 'images/taper-lock-pulley/tlp01.jpeg', alt: 'Taper Lock Pulley img 1, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp02.jpeg', alt: 'Taper Lock Pulley img 2, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp03.jpeg', alt: 'Taper Lock Pulley img 3, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp04.jpeg', alt: 'Taper Lock Pulley img 4, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp05.jpeg', alt: 'Taper Lock Pulley img 5, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp06.jpeg', alt: 'Taper Lock Pulley img 6, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp07.jpeg', alt: 'Taper Lock Pulley img 7, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp08.jpeg', alt: 'Taper Lock Pulley img 8, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp09.jpeg', alt: 'Taper Lock Pulley img 9, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp10.jpeg', alt: 'Taper Lock Pulley img 10, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp11.jpg', alt: 'Taper Lock Pulley img 11, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp12.jpg', alt: 'Taper Lock Pulley img 12, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp13.jpg', alt: 'Taper Lock Pulley img 13, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp14.jpg', alt: 'Taper Lock Pulley img 14, Prarthana Industries' },
+  { src: 'images/taper-lock-pulley/tlp15.jpg', alt: 'Taper Lock Pulley img 15, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures Taper Lock Pulleys designed for quick installation and reliable power transmission in belt drive systems.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Outer Diameter</td><td>100 mm to 1500 mm</td></tr>
+        <tr><td>Groove Type</td><td>Single / Multiple</td></tr>
+        <tr><td>Bore Type</td><td>Taper Lock Bush</td></tr>
+        <tr><td>Keyway</td><td>Finished Bore with Keyway</td></tr>
+      </tbody></table>
+      <p>Applications include belt drive systems, conveyor drives, and industrial machines. We supply taper lock pulleys to industrial users, OEM manufacturers, and spare parts distributors across India and for export.</p>
+    `
+  },
+  'timing-pulley': {
+    icon: '⭕', category: 'Pulleys & Belts', name: 'Timing Pulley',
+    heroDesc: 'Timing Pulleys designed for synchronous power transmission with timing belts — ensuring precise motion control without slippage, available in MXL, XL, L, H, XH, XXH, metric T and HTD profiles.',
+    images: [
+  { src: 'images/timing-pulley/tp01.jpg', alt: 'Timing Pulley img 1, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp02.jpeg', alt: 'Timing Pulley img 2, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp03.jpeg', alt: 'Timing Pulley img 3, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp04.jpeg', alt: 'Timing Pulley img 4, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp05.jpeg', alt: 'Timing Pulley img 5, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp06.jpeg', alt: 'Timing Pulley img 6, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp07.jpeg', alt: 'Timing Pulley img 7, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp08.jpeg', alt: 'Timing Pulley img 8, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp09.jpeg', alt: 'Timing Pulley img 9, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp10.jpeg', alt: 'Timing Pulley img 10, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp11.jpeg', alt: 'Timing Pulley img 11, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp12.jpeg', alt: 'Timing Pulley img 12, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp13.jpeg', alt: 'Timing Pulley img 13, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp14.jpeg', alt: 'Timing Pulley img 14, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp15.jpeg', alt: 'Timing Pulley img 15, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp16.jpeg', alt: 'Timing Pulley img 16, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp17.jpeg', alt: 'Timing Pulley img 17, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp18.jpeg', alt: 'Timing Pulley img 18, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp19.jpeg', alt: 'Timing Pulley img 19, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp20.jpeg', alt: 'Timing Pulley img 20, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp21.jpeg', alt: 'Timing Pulley img 21, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp22.jpeg', alt: 'Timing Pulley img 22, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp23.jpeg', alt: 'Timing Pulley img 23, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp24.jpeg', alt: 'Timing Pulley img 24, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp25.jpeg', alt: 'Timing Pulley img 25, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp26.jpeg', alt: 'Timing Pulley img 26, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp27.jpeg', alt: 'Timing Pulley img 27, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp28.jpeg', alt: 'Timing Pulley img 28, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp29.jpeg', alt: 'Timing Pulley img 29, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp30.jpeg', alt: 'Timing Pulley img 30, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp31.jpeg', alt: 'Timing Pulley img 31, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp32.jpeg', alt: 'Timing Pulley img 32, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp33.jpeg', alt: 'Timing Pulley img 33, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp34.jpeg', alt: 'Timing Pulley img 34, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp35.jpeg', alt: 'Timing Pulley img 35, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp36.jpeg', alt: 'Timing Pulley img 36, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp37.jpeg', alt: 'Timing Pulley img 37, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp38.jpeg', alt: 'Timing Pulley img 38, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp39.jpeg', alt: 'Timing Pulley img 39, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp40.jpeg', alt: 'Timing Pulley img 40, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp41.jpeg', alt: 'Timing Pulley img 41, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp42.jpeg', alt: 'Timing Pulley img 42, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp43.jpeg', alt: 'Timing Pulley img 43, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp44.jpeg', alt: 'Timing Pulley img 44, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp45.jpeg', alt: 'Timing Pulley img 45, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp46.jpeg', alt: 'Timing Pulley img 46, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp47.jpeg', alt: 'Timing Pulley img 47, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp48.jpeg', alt: 'Timing Pulley img 48, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp49.jpeg', alt: 'Timing Pulley img 49, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp50.jpeg', alt: 'Timing Pulley img 50, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp51.jpeg', alt: 'Timing Pulley img 51, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp52.jpeg', alt: 'Timing Pulley img 52, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp53.jpeg', alt: 'Timing Pulley img 53, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp54.jpeg', alt: 'Timing Pulley img 54, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp55.jpg', alt: 'Timing Pulley img 55, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp56.jpg', alt: 'Timing Pulley img 56, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp57.jpg', alt: 'Timing Pulley img 57, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp58.jpg', alt: 'Timing Pulley img 58, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp59.jpg', alt: 'Timing Pulley img 59, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp60.jpg', alt: 'Timing Pulley img 60, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp61.jpg', alt: 'Timing Pulley img 61, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp62.jpg', alt: 'Timing Pulley img 62, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp63.jpg', alt: 'Timing Pulley img 63, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp64.jpg', alt: 'Timing Pulley img 64, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp65.jpg', alt: 'Timing Pulley img 65, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp66.jpg', alt: 'Timing Pulley img 66, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp67.jpg', alt: 'Timing Pulley img 67, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp68.jpg', alt: 'Timing Pulley img 68, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp69.jpg', alt: 'Timing Pulley img 69, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp70.jpg', alt: 'Timing Pulley img 70, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp71.jpg', alt: 'Timing Pulley img 71, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp72.jpg', alt: 'Timing Pulley img 72, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp73.jpg', alt: 'Timing Pulley img 73, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp74.jpg', alt: 'Timing Pulley img 74, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp75.jpg', alt: 'Timing Pulley img 75, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp76.jpg', alt: 'Timing Pulley img 76, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp77.jpg', alt: 'Timing Pulley img 77, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp78.jpg', alt: 'Timing Pulley img 78, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp79.jpg', alt: 'Timing Pulley img 79, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp80.jpg', alt: 'Timing Pulley img 80, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp81.jpg', alt: 'Timing Pulley img 81, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp82.jpg', alt: 'Timing Pulley img 82, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp83.jpg', alt: 'Timing Pulley img 83, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp84.jpg', alt: 'Timing Pulley img 84, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp85.jpg', alt: 'Timing Pulley img 85, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp86.jpg', alt: 'Timing Pulley img 86, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp87.jpg', alt: 'Timing Pulley img 87, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp88.jpg', alt: 'Timing Pulley img 88, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp89.jpg', alt: 'Timing Pulley img 89, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp90.jpg', alt: 'Timing Pulley img 90, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp91.jpg', alt: 'Timing Pulley img 91, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp92.jpg', alt: 'Timing Pulley img 92, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp93.jpg', alt: 'Timing Pulley img 93, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp94.jpg', alt: 'Timing Pulley img 94, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp95.jpg', alt: 'Timing Pulley img 95, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp96.jpg', alt: 'Timing Pulley img 96, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp97.jpg', alt: 'Timing Pulley img 97, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp98.jpg', alt: 'Timing Pulley img 98, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp99.jpg', alt: 'Timing Pulley img 99, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp100.jpg', alt: 'Timing Pulley img 100, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp101.jpg', alt: 'Timing Pulley img 101, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp102.jpg', alt: 'Timing Pulley img 102, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp103.jpg', alt: 'Timing Pulley img 103, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp104.jpg', alt: 'Timing Pulley img 104, Prarthana Industries' },
+  { src: 'images/timing-pulley/tp105.jpg', alt: 'Timing Pulley img 105, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures high precision Timing Pulleys suitable for synchronous belt drives requiring accurate motion control.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Pitch Types</td><td>MXL, XL, L, H, XH, XXH, 2M, 3M, 5M, 8M, 14M, 20M, T2.5, T5, T10, T20</td></tr>
+        <tr><td>Material</td><td>Aluminium, M.S., EN-8, Cast Iron, SG Iron</td></tr>
+        <tr><td>Mounting</td><td>With or Without Taper Lock Bush</td></tr>
+        <tr><td>Optional Features</td><td>Side Covers Available</td></tr>
+        <tr><td>Manufacturing</td><td>Standard or as per Drawing / Sample</td></tr>
+      </tbody></table>
+      <p>Applications include CNC machines, automation systems, textile machinery, and packaging machines. We serve both prototype and production quantities for customers across India and internationally.</p>
+    `
+  },
+  'v-belt-pulley': {
+    icon: '⚫', category: 'Pulleys & Belts', name: 'V Belt Pulley',
+    heroDesc: 'V Belt Pulleys for efficient belt-driven power transmission — available in belt sections Z, A, B, C, D, E, SPZ, SPA, SPB, SPC with diameter range 50 mm to 2000 mm, single and multiple groove.',
+    images: [
+  { src: 'images/v-belt-pulley/vbp01.jpg', alt: 'V-Belt Pulley img 1, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp02.jpeg', alt: 'V-Belt Pulley img 2, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp03.jpeg', alt: 'V-Belt Pulley img 3, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp04.jpeg', alt: 'V-Belt Pulley img 4, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp05.jpeg', alt: 'V-Belt Pulley img 5, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp06.jpeg', alt: 'V-Belt Pulley img 6, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp07.jpeg', alt: 'V-Belt Pulley img 7, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp08.jpeg', alt: 'V-Belt Pulley img 8, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp09.jpeg', alt: 'V-Belt Pulley img 9, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp10.jpeg', alt: 'V-Belt Pulley img 10, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp11.jpeg', alt: 'V-Belt Pulley img 11, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp12.jpeg', alt: 'V-Belt Pulley img 12, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp13.jpeg', alt: 'V-Belt Pulley img 13, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp14.jpeg', alt: 'V-Belt Pulley img 14, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp15.jpg', alt: 'V-Belt Pulley img 15, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp16.jpg', alt: 'V-Belt Pulley img 16, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp17.jpg', alt: 'V-Belt Pulley img 17, Prarthana Industries' },
+  { src: 'images/v-belt-pulley/vbp18.jpg', alt: 'V-Belt Pulley img 18, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries offers high-performance V Belt Pulleys designed for efficient power transmission in belt drive systems.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Belt Sections</td><td>Z, A, B, C, D, E, SPZ, SPA, SPB, SPC</td></tr>
+        <tr><td>Diameter Range</td><td>50 mm to 2000 mm</td></tr>
+        <tr><td>Groove</td><td>Single / Multiple</td></tr>
+        <tr><td>Mounting</td><td>With or Without Taper Lock Bush</td></tr>
+      </tbody></table>
+      <p>Applications include industrial motors, pumps and compressors, agricultural machines, and industrial drive systems. We supply V-belt pulleys to industrial users, OEM manufacturers, and spare parts distributors across India and for export.</p>
+    `
+  },
+  'v-groove-pulley': {
+    icon: '⭕', category: 'Pulleys & Belts', name: 'V Groove Pulley',
+    heroDesc: 'V Groove Pulleys designed for reliable belt alignment and smooth power transmission — belt sections Z to SPC, diameter range 50 mm to 2000 mm, with or without Taper Lock Bush.',
+    images: [
+  { src: 'images/v-groove-pulley/vgp01.jpg', alt: 'V-Groove Pulley img 1, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp02.jpeg', alt: 'V-Groove Pulley img 2, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp03.jpeg', alt: 'V-Groove Pulley img 3, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp04.jpg', alt: 'V-Groove Pulley img 4, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp05.jpg', alt: 'V-Groove Pulley img 5, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp06.jpg', alt: 'V-Groove Pulley img 6, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp07.jpg', alt: 'V-Groove Pulley img 7, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp08.jpg', alt: 'V-Groove Pulley img 8, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp09.jpg', alt: 'V-Groove Pulley img 9, Prarthana Industries' },
+  { src: 'images/v-groove-pulley/vgp10.jpg', alt: 'V-Groove Pulley img 10, Prarthana Industries' },
+],
+    description: `
+      <p>Prarthana Industries manufactures precision V Groove Pulleys designed for reliable belt alignment and efficient power transmission.</p>
+      <table class="pd-spec-table"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>
+        <tr><td>Belt Sections</td><td>Z, A, B, C, D, E, SPZ, SPA, SPB, SPC</td></tr>
+        <tr><td>Diameter Range</td><td>50 mm to 2000 mm</td></tr>
+        <tr><td>Groove Type</td><td>Single / Multiple</td></tr>
+        <tr><td>Mounting</td><td>With or Without Taper Lock Bush</td></tr>
+      </tbody></table>
+      <p>Applications include industrial machinery, conveyor drives, power transmission equipment, and motor drive systems. We supply to equipment manufacturers, plant engineering contractors, and MRO procurement teams across India and internationally.</p>
+    `
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   GALLERY — Real images if available, else placeholders
+   ═══════════════════════════════════════════════ */
+function buildGallery(product) {
+  const grid = document.getElementById('pd-gallery-grid');
+  const hasRealImages = product.images && product.images.length > 0;
+  const total = hasRealImages ? product.images.length : 25;
+
+  for (let i = 0; i < total; i++) {
+    const div = document.createElement('div');
+    div.className = 'pd-gallery-thumb';
+    div.dataset.index = i;
+
+    if (hasRealImages && product.images[i]) {
+      const img = document.createElement('img');
+      img.src = product.images[i].src;
+      img.alt = product.images[i].alt || (product.name + ' image ' + (i + 1));
+      img.loading = 'lazy';
+      div.appendChild(img);
+      div.style.background = '#111';
+    } else {
+      div.innerHTML = '<span>' + product.icon + '</span>';
+      div.style.background = i % 3 === 0 ? '#232323' : i % 3 === 1 ? '#1A1A1A' : '#1e1e1e';
+    }
+
+    div.addEventListener('click', () => openLightbox(i, product, total, hasRealImages));
+    grid.appendChild(div);
+  }
+}
+
+/* ── Lightbox ── */
+let _currentIndex   = 0;
+let _totalImages    = 25;
+let _productIcon    = '';
+let _productImages  = null;
+
+function openLightbox(index, product, total, hasReal) {
+  _currentIndex  = index;
+  _totalImages   = total || 25;
+  _productIcon   = product.icon;
+  _productImages = hasReal ? product.images : null;
+  updateLightbox();
+  document.getElementById('pd-lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateLightbox() {
+  const lbImg = document.getElementById('lb-img');
+  if (_productImages && _productImages[_currentIndex]) {
+    const imgData = _productImages[_currentIndex];
+    lbImg.innerHTML = '<img src="' + imgData.src + '" alt="' + (imgData.alt || '') + '">';
+  } else {
+    lbImg.innerHTML = '<span class="lb-placeholder" id="lb-icon">' + _productIcon + '</span>';
+  }
+  document.getElementById('lb-caption').textContent = 'Image ' + (_currentIndex + 1) + ' of ' + _totalImages;
+  document.getElementById('lb-counter').textContent = (_currentIndex + 1) + ' / ' + _totalImages;
+}
+
+function closeLightbox() {
+  document.getElementById('pd-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => {
+  _currentIndex = (_currentIndex - 1 + _totalImages) % _totalImages;
+  updateLightbox();
+});
+document.getElementById('lb-next').addEventListener('click', () => {
+  _currentIndex = (_currentIndex + 1) % _totalImages;
+  updateLightbox();
+});
+document.getElementById('pd-lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  const lb = document.getElementById('pd-lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft')  { _currentIndex = (_currentIndex - 1 + _totalImages) % _totalImages; updateLightbox(); }
+  if (e.key === 'ArrowRight') { _currentIndex = (_currentIndex + 1) % _totalImages;                updateLightbox(); }
+});
+
+/* ── Load product ── */
+function loadProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('p') || 'bevel-gear';
+  const p = PRODUCTS[key];
+  if (!p) { window.location.href = 'products.html'; return; }
+
+  document.title = p.name + ' — Prarthana Industries';
+  document.getElementById('pd-bc-name').textContent = p.name;
+  document.getElementById('pd-icon').textContent = p.icon;
+  document.getElementById('pd-cat').textContent = p.category;
+  document.getElementById('pd-title').textContent = p.name;
+  document.getElementById('pd-hero-desc').textContent = p.heroDesc;
+  document.getElementById('pd-description').innerHTML = p.description;
+  document.getElementById('pd-gallery-title').textContent = p.name + ' — Product Images';
+
+  // Wire mailto with product name pre-filled
+  const subject = encodeURIComponent('Enquiry: ' + p.name + ' — Prarthana Industries');
+  const body = encodeURIComponent('Hi,\n\nI am interested in: ' + p.name + '\n\nName:\nPhone:\nQuantity / Specifications:\n');
+  document.getElementById('pd-quote-btn').href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
+
+  buildGallery(p);
+}
+
+initShared('products');
+loadProduct();
+</script>
+</body>
+</html>
