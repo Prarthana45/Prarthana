@@ -4,114 +4,131 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/</loc>
+  <loc>https://prarthanaindustries.com/</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>1.00</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/products.html</loc>
+  <loc>https://prarthanaindustries.com/products.html</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/contact.html</loc>
+  <loc>https://prarthanaindustries.com/contact.html</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=bevel-gear</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=bevel-gear</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=chain-coupling</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=chain-coupling</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=customised-parts</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=customised-parts</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=food-machining-parts</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=food-machining-parts</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=geneva</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=geneva</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=helical-gear</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=helical-gear</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=industrial-gear</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=industrial-gear</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=industrial-sprockets</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=industrial-sprockets</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=rack-and-pinion</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=rack-and-pinion</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=spiral-bevel-gear</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=spiral-bevel-gear</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=spiral-jaw-clutch</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=spiral-jaw-clutch</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=taper-lock-bush</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-bush</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=taper-lock-pulley</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-pulley</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=timing-pulley</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=timing-pulley</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=v-belt-pulley</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=v-belt-pulley</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/product-detail.html?p=v-groove-pulley</loc>
+  <loc>https://prarthanaindustries.com/product-detail.html?p=v-groove-pulley</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/about.html</loc>
+  <loc>https://prarthanaindustries.com/about.html</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+
 <url>
-  <loc>https://prarthana45.github.io/Prarthana/index.html</loc>
+  <loc>https://prarthanaindustries.com/index.html</loc>
   <lastmod>2026-03-21T08:45:05+00:00</lastmod>
   <priority>0.64</priority>
 </url>
-
 
 </urlset>
