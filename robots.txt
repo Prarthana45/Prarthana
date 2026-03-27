@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Block low-value or non-SEO pages (if present)
+Disallow: /franchisee.html
+
+# Prevent crawling of duplicate/query URLs
+Disallow: /*?
+
+# Sitemap
+Sitemap: https://prarthana45.github.io/Prarthana/sitemap.xml
