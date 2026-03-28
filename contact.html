@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Prarthana Industries</title>
-<meta name="description" content="Contact Prarthana Industries — Get a quote for precision transmission components. 45, Khodiyar Estate, Ahmedabad, India.">
+<meta name="description" content="Contact Prarthana Industries — Get a quote for precision transmission components. 45, Khodiyar Estate, C.T.M., Amraiwadi, Ahmedabad, India.">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="inner.css">
@@ -40,7 +40,7 @@
           <div class="cdetail-icon">📍</div>
           <div>
             <div class="cdetail-lbl">Factory Address</div>
-            <div class="cdetail-val">45, Khodiyar Estate, Jamfalwadi Road,<br>Amraiwadi, Ahmedabad – 380026<br>Gujarat, India</div>
+            <div class="cdetail-val">45, Khodiyar Estate, Jamfalwadi Road,<br>C.T.M., Amraiwadi, Ahmedabad – 380026<br>Gujarat, India</div>
           </div>
         </div>
 
@@ -56,14 +56,6 @@
         </div>
 
         <div class="cdetail reveal reveal-d2">
-          <div class="cdetail-icon">📞</div>
-          <div>
-            <div class="cdetail-lbl">Phone / Mobile</div>
-            <div class="cdetail-val"><a href="tel:+91XXXXXXXXXX">+91 XXXX XXXXXX</a></div>
-          </div>
-        </div>
-
-        <div class="cdetail reveal">
           <div class="cdetail-icon">✉️</div>
           <div>
             <div class="cdetail-lbl">Email</div>
@@ -79,14 +71,15 @@
           </div>
         </div>
 
-        <div style="margin-top:28px;" class="reveal reveal-d2">
-          <a href="https://wa.me/91XXXXXXXXXX" class="whatsapp-btn">💬 Chat on WhatsApp</a>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;" class="reveal reveal-d2">
+          <a href="https://wa.me/918758578105" class="whatsapp-btn">💬 Chat on WhatsApp</a>
+          <a href="arattai://chat?phone=8758578105" class="whatsapp-btn" style="background:#0084FF;box-shadow:none;" onmouseover="this.style.background='#006ddb'" onmouseout="this.style.background='#0084FF'">💬 Arattai Us</a>
         </div>
 
         <div class="map-box reveal" style="margin-top:28px;">
           <div class="map-box-icon">📍</div>
           <div class="map-box-name">Prarthana Industries</div>
-          <div class="map-box-addr">45, Khodiyar Estate, Amraiwadi, Ahmedabad</div>
+          <div class="map-box-addr">45, Khodiyar Estate, C.T.M., Amraiwadi, Ahmedabad</div>
           <a href="https://maps.app.goo.gl/nxdgrdBjoELsjuSBA" target="_blank" rel="noopener" class="map-box-link">Open in Google Maps →</a>
         </div>
 
@@ -126,8 +119,8 @@
               <option>Bevel Gear</option>
               <option>Chain Coupling</option>
               <option>Customised Parts</option>
-              <option>Food Machining Parts</option>
-              <option>Geneva</option>
+              <option>Food Machine Parts</option>
+              <option>Geneva Mechanism</option>
               <option>Helical Gear</option>
               <option>Industrial Gear</option>
               <option>Industrial Sprockets</option>
@@ -167,20 +160,20 @@
   initShared('contact');
 
   function submitForm() {
-    const name    = document.getElementById('f-name').value.trim();
-    const company = document.getElementById('f-company').value.trim();
-    const phone   = document.getElementById('f-phone').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const product = document.getElementById('f-product').value;
-    const msg     = document.getElementById('f-msg').value.trim();
+    var name    = document.getElementById('f-name').value.trim();
+    var company = document.getElementById('f-company').value.trim();
+    var phone   = document.getElementById('f-phone').value.trim();
+    var email   = document.getElementById('f-email').value.trim();
+    var product = document.getElementById('f-product').value;
+    var msg     = document.getElementById('f-msg').value.trim();
 
     if (!name || !phone || !product) {
       alert('Please fill in your Name, Phone and Product before sending.');
       return;
     }
 
-    const subject = encodeURIComponent('Enquiry: ' + product + ' — Prarthana Industries');
-    const body = encodeURIComponent(
+    var subject = encodeURIComponent('Enquiry: ' + product + ' — Prarthana Industries');
+    var body = encodeURIComponent(
       'Name: ' + name + '\n' +
       (company ? 'Company: ' + company + '\n' : '') +
       'Phone: ' + phone + '\n' +
@@ -191,11 +184,11 @@
 
     window.location.href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
 
-    const btn = document.getElementById('form-submit-btn');
+    var btn = document.getElementById('form-submit-btn');
     btn.textContent = '✓ Opening your email client…';
     btn.classList.add('sent');
     btn.disabled = true;
-    setTimeout(() => {
+    setTimeout(function() {
       btn.textContent = 'Send Enquiry →';
       btn.classList.remove('sent');
       btn.disabled = false;

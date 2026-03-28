@@ -258,7 +258,7 @@
         <div class="pd-quote-box">
           <div class="pd-quote-title">Request a Quote</div>
           <div class="pd-quote-sub">Need this product? Share your quantity and specifications — we'll respond within 24 hours, India or abroad.</div>
-          <a id="pd-quote-btn" href="mailto:darshan@prarthanaindustries.com" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
+          <a id="pd-quote-btn" href="/cdn-cgi/l/email-protection#23474251504b424d6353514251574b424d424a4d47565057514a46500d404c4e" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
             Get a Quote <span class="btn-arrow">→</span>
           </a>
           <a href="https://wa.me/91XXXXXXXXXX" class="pd-cta-whatsapp">💬 WhatsApp Enquiry</a>
@@ -307,7 +307,7 @@
 
 <div id="footer-placeholder"></div>
 
-<script src="shared.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="shared.js"></script>
 <script>
 /* ═══════════════════════════════════════════════
    PRODUCT DATA — 16 Products
@@ -420,7 +420,7 @@ const PRODUCTS = {
     `
   },
   'food-machining-parts': {
-    icon: '🏭', category: 'Custom & Special', name: 'Food Machining Parts',
+    icon: '🏭', category: 'Custom & Special', name: 'Food Machine Parts',
     heroDesc: 'Durable and reliable components used in food processing machines — designed to provide smooth performance and long service life in food production environments.',
     heroImage: 'images/customised-parts/cp01.jpeg',
 images: [
@@ -464,7 +464,7 @@ images: [
     `
   },
   'geneva': {
-    icon: '⬤', category: 'Gears & Racks', name: 'Geneva',
+    icon: '⬤', category: 'Gears & Racks', name: 'Geneva Mechanism',
     heroDesc: 'Geneva mechanisms that convert continuous motion into intermittent motion — widely used in indexing systems and automation machinery with 4, 6, 8 and 12 indexing options.',
     heroImage: 'images/customised-parts/cp01.jpeg',
 images: [
@@ -1176,13 +1176,4 @@ function loadProduct() {
   // Wire mailto with product name pre-filled
   const subject = encodeURIComponent('Enquiry: ' + p.name + ' — Prarthana Industries');
   const body = encodeURIComponent('Hi,\n\nI am interested in: ' + p.name + '\n\nName:\nPhone:\nQuantity / Specifications:\n');
-  document.getElementById('pd-quote-btn').href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
-
-  buildGallery(p);
-}
-
-initShared('products');
-loadProduct();
-</script>
-</body>
-</html>
+  document.getElementById('pd-quote-btn').href = 'mail
