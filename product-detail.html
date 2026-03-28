@@ -258,7 +258,7 @@
         <div class="pd-quote-box">
           <div class="pd-quote-title">Request a Quote</div>
           <div class="pd-quote-sub">Need this product? Share your quantity and specifications — we'll respond within 24 hours, India or abroad.</div>
-          <a id="pd-quote-btn" href="/cdn-cgi/l/email-protection#23474251504b424d6353514251574b424d424a4d47565057514a46500d404c4e" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
+          <a id="pd-quote-btn" href="mailto:darshan@prarthanaindustries.com" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
             Get a Quote <span class="btn-arrow">→</span>
           </a>
           <a href="https://wa.me/91XXXXXXXXXX" class="pd-cta-whatsapp">💬 WhatsApp Enquiry</a>
@@ -307,7 +307,7 @@
 
 <div id="footer-placeholder"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="shared.js"></script>
+<script src="shared.js"></script>
 <script>
 /* ═══════════════════════════════════════════════
    PRODUCT DATA — 16 Products
@@ -1176,4 +1176,15 @@ function loadProduct() {
   // Wire mailto with product name pre-filled
   const subject = encodeURIComponent('Enquiry: ' + p.name + ' — Prarthana Industries');
   const body = encodeURIComponent('Hi,\n\nI am interested in: ' + p.name + '\n\nName:\nPhone:\nQuantity / Specifications:\n');
-  document.getElementById('pd-quote-btn').href = 'mail
+    document.getElementById('pd-quote-btn').href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
+
+  buildGallery(p);
+}
+
+try { initShared('products'); } catch(e) {
+  document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+}
+loadProduct();
+</script>
+</body>
+</html>

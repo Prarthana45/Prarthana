@@ -296,6 +296,10 @@
 
 <div id="footer-placeholder"></div>
 <script src="shared.js"></script>
-<script>initShared('sitemap');</script>
+<script>
+  try { initShared('sitemap'); } catch(e) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+</script>
 </body>
 </html>

@@ -80,11 +80,11 @@ function renderFooter() {
       <div>
         <div class="footer-col-title">Contact</div>
         <ul class="footer-links">
-          <li>45, Khodiyar Estate, Jamfalwadi Road, C.T.M., Amraiwadi, Ahmedabad – 380026, Gujarat, India</li>
+          <li>45, Khodiyar Estate, Jamfalwadi Road, CTM, Amraiwadi, Ahmedabad – 380026, Gujarat, India</li>
           <li><a href="mailto:darshan@prarthanaindustries.com">darshan@prarthanaindustries.com</a></li>
           <li style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
             <a href="https://wa.me/918758578105" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:9px 16px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#1ebe5d'" onmouseout="this.style.background='#25D366'">💬 WhatsApp Us</a>
-            <a href="arattai://chat?phone=8758578105" style="display:inline-flex;align-items:center;gap:8px;background:#0084FF;color:#fff;padding:9px 16px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#006ddb'" onmouseout="this.style.background='#0084FF'">💬 Arattai Us</a>
+            <a href="https://aratt.ai/user/@prarthana45" style="display:inline-flex;align-items:center;gap:8px;background:#0084FF;color:#fff;padding:9px 16px;border-radius:7px;font-size:13px;font-weight:600;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#006ddb'" onmouseout="this.style.background='#0084FF'">💬 Arattai Us</a>
           </li>
         </ul>
       </div>

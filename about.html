@@ -133,6 +133,10 @@
 
 <div id="footer-placeholder"></div>
 <script src="shared.js"></script>
-<script>initShared('about');</script>
+<script>
+  try { initShared('about'); } catch(e) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+</script>
 </body>
 </html>

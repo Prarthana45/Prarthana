@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Products — Prarthana Industries</title>
-<meta name="description" content="Prarthana Industries product catalogue — Bevel Gear, Chain Coupling, Customised Parts, Food Machining Parts, Geneva, Helical Gear, Industrial Gear, Industrial Sprockets, Rack and Pinion, Spiral Bevel Gear, Spiral Jaw Clutch Coupling, Taper Lock Bush Weld Hub and QD Bush, Taper Lock Pulley, Timing Pulley, V Belt Pulley, V Groove Pulley. Manufacturer and exporter, Ahmedabad India.">
+<meta name="description" content="Prarthana Industries product catalogue — Bevel Gear, Chain Coupling, Customised Parts, Food Machine Parts, Geneva Mechanism, Helical Gear, Industrial Gear, Industrial Sprockets, Rack and Pinion, Spiral Bevel Gear, Spiral Jaw Clutch Coupling, Taper Lock Bush Weld Hub and QD Bush, Taper Lock Pulley, Timing Pulley, V Belt Pulley, V Groove Pulley. Manufacturer and exporter, Ahmedabad India.">
 <meta name="keywords" content="bevel gear manufacturer India, chain coupling supplier, customised machined parts Gujarat, food machining parts India, geneva mechanism manufacturer, helical gear supplier Ahmedabad, industrial gear manufacturer, industrial sprockets India, rack and pinion manufacturer, spiral bevel gear, taper lock pulley, timing pulley, v belt pulley exporter, v groove pulley manufacturer">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" href="logo.png">
@@ -538,7 +538,9 @@
 <div id="footer-placeholder"></div>
 <script src="shared.js"></script>
 <script>
-  initShared('products');
+  try { initShared('products'); } catch(e) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
 
   /* ── Filter logic ── */
   const filterBtns = document.querySelectorAll('.filter-btn');

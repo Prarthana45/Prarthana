@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Prarthana Industries</title>
-<meta name="description" content="Contact Prarthana Industries — Get a quote for precision transmission components. 45, Khodiyar Estate, C.T.M., Amraiwadi, Ahmedabad, India.">
+<meta name="description" content="Contact Prarthana Industries — Get a quote for precision transmission components. 45, Khodiyar Estate, CTM, Amraiwadi, Ahmedabad, India.">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="inner.css">
@@ -40,7 +40,7 @@
           <div class="cdetail-icon">📍</div>
           <div>
             <div class="cdetail-lbl">Factory Address</div>
-            <div class="cdetail-val">45, Khodiyar Estate, Jamfalwadi Road,<br>C.T.M., Amraiwadi, Ahmedabad – 380026<br>Gujarat, India</div>
+            <div class="cdetail-val">45, Khodiyar Estate, Jamfalwadi Road,<br>CTM, Amraiwadi, Ahmedabad – 380026<br>Gujarat, India</div>
           </div>
         </div>
 
@@ -73,13 +73,13 @@
 
         <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;" class="reveal reveal-d2">
           <a href="https://wa.me/918758578105" class="whatsapp-btn">💬 Chat on WhatsApp</a>
-          <a href="arattai://chat?phone=8758578105" class="whatsapp-btn" style="background:#0084FF;box-shadow:none;" onmouseover="this.style.background='#006ddb'" onmouseout="this.style.background='#0084FF'">💬 Arattai Us</a>
+          <a href="https://aratt.ai/user/@prarthana45" class="whatsapp-btn" style="background:#0084FF;box-shadow:none;" onmouseover="this.style.background='#006ddb'" onmouseout="this.style.background='#0084FF'">💬 Arattai Us</a>
         </div>
 
         <div class="map-box reveal" style="margin-top:28px;">
           <div class="map-box-icon">📍</div>
           <div class="map-box-name">Prarthana Industries</div>
-          <div class="map-box-addr">45, Khodiyar Estate, C.T.M., Amraiwadi, Ahmedabad</div>
+          <div class="map-box-addr">45, Khodiyar Estate, CTM, Amraiwadi, Ahmedabad</div>
           <a href="https://maps.app.goo.gl/nxdgrdBjoELsjuSBA" target="_blank" rel="noopener" class="map-box-link">Open in Google Maps →</a>
         </div>
 
@@ -157,7 +157,9 @@
 <div id="footer-placeholder"></div>
 <script src="shared.js"></script>
 <script>
-  initShared('contact');
+  try { initShared('contact'); } catch(e) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
 
   function submitForm() {
     var name    = document.getElementById('f-name').value.trim();

@@ -29,7 +29,7 @@
   "foundingDate": "1996",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "45, Khodiyar Estate, Jamfalwadi Road, C.T.M., Amraiwadi",
+    "streetAddress": "45, Khodiyar Estate, Jamfalwadi Road, CTM, Amraiwadi",
     "addressLocality": "Ahmedabad",
     "addressRegion": "Gujarat",
     "postalCode": "380026",
@@ -429,7 +429,9 @@
 
 <script src="shared.js"></script>
 <script>
-  initShared('home');
+  try { initShared('home'); } catch(e) {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
 </script>
 </body>
 </html>
