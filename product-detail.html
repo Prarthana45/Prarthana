@@ -15,6 +15,64 @@
 
 .pd-section { padding: 80px 0; background: var(--white); }
 
+/* ── Hero overrides for product detail — image + gradient layout ── */
+#pd-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  padding: 160px 0 80px;
+}
+#pd-hero .page-hero-bg { display: none; }
+
+.pd-hero-img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.pd-hero-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+/* dark base tint over the whole image */
+.pd-hero-img::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: rgba(10,10,10,0.55);
+}
+/* gradient: solid dark on left fading to transparent on right */
+.pd-hero-img::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background: linear-gradient(
+    90deg,
+    #0A0A0A 0%,
+    #0A0A0A 30%,
+    rgba(10,10,10,0.82) 50%,
+    rgba(10,10,10,0.3) 72%,
+    rgba(10,10,10,0.05) 100%
+  );
+}
+#pd-hero .page-hero-content {
+  position: relative; z-index: 3;
+  max-width: 620px;
+  margin-left: 0;
+  text-align: left;
+}
+/* hide the old icon element */
+#pd-icon { display: none !important; }
+
+@media (max-width: 768px) {
+  .pd-hero-img::after {
+    background: linear-gradient(
+      180deg,
+      rgba(10,10,10,0.2) 0%,
+      #0A0A0A 60%
+    );
+  }
+}
+
 .pd-main-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -228,14 +286,15 @@
 
 <!-- PAGE HERO (populated by JS) -->
 <div class="page-hero" id="pd-hero">
-  <div class="page-hero-bg"></div>
+  <div class="pd-hero-img" id="pd-hero-img">
+    <!-- image injected by JS -->
+  </div>
   <div class="page-hero-content container">
     <nav class="breadcrumb" id="pd-breadcrumb">
       <a href="index.html">Home</a><span>/</span>
       <a href="products.html">Products</a><span>/</span>
       <span id="pd-bc-name" style="color:rgba(255,255,255,0.55);"></span>
     </nav>
-    <div style="font-size:72px;margin-bottom:16px;line-height:1;" id="pd-icon"></div>
     <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);font-weight:700;margin-bottom:10px;" id="pd-cat"></div>
     <h1 class="page-hero-title" id="pd-title"></h1>
     <p class="page-hero-sub" id="pd-hero-desc"></p>
@@ -261,7 +320,7 @@
           <a id="pd-quote-btn" href="mailto:darshan@prarthanaindustries.com" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:12px;">
             Get a Quote <span class="btn-arrow">→</span>
           </a>
-          <a href="https://wa.me/91XXXXXXXXXX" class="pd-cta-whatsapp">💬 WhatsApp Enquiry</a>
+          <a href="https://wa.me/918758578105" class="pd-cta-whatsapp">💬 WhatsApp Enquiry</a>
         </div>
       </div>
 
@@ -419,7 +478,7 @@ const PRODUCTS = {
       <p>Applications include special purpose machines, industrial automation systems, maintenance replacement parts, and engineering equipment. Our experienced engineering team reviews your drawings to ensure manufacturability and advises on material selection or tolerances where needed.</p>
     `
   },
-  'food-machining-parts': {
+  'food-machine-parts': {
     icon: '🏭', category: 'Custom & Special', name: 'Food Machine Parts',
     heroDesc: 'Durable and reliable components used in food processing machines — designed to provide smooth performance and long service life in food production environments.',
     heroImage: 'images/customised-parts/cp01.jpeg',
@@ -463,7 +522,7 @@ images: [
       <p>Applications span the food processing industry including automatic roti making machines, papad manufacturing machines, and sevaiya production machines. We supply food machinery component manufacturers and end-users across India and export internationally.</p>
     `
   },
-  'geneva': {
+  'geneva-mechanism': {
     icon: '⬤', category: 'Gears & Racks', name: 'Geneva Mechanism',
     heroDesc: 'Geneva mechanisms that convert continuous motion into intermittent motion — widely used in indexing systems and automation machinery with 4, 6, 8 and 12 indexing options.',
     heroImage: 'images/customised-parts/cp01.jpeg',
@@ -750,7 +809,7 @@ images: [
       <p>Applications include automotive differential systems, industrial drives, and heavy engineering machinery. All spiral bevel gears are manufactured from customer-supplied drawings or specifications. Matched gear sets are supplied and can be accompanied by material test certificates and inspection reports.</p>
     `
   },
-  'spiral-jaw-clutch': {
+  'spiral-jaw-clutch-coupling': {
     icon: '🔄', category: 'Couplings', name: 'Spiral Jaw Clutch Coupling',
     heroDesc: 'Spiral Jaw Clutch Couplings providing reliable torque transmission while accommodating slight shaft misalignment — available in 3 jaw and 4 jaw configurations with bore range 20 mm to 150 mm.',
     images: [
@@ -1166,17 +1225,26 @@ function loadProduct() {
 
   document.title = p.name + ' — Prarthana Industries';
   document.getElementById('pd-bc-name').textContent = p.name;
-  document.getElementById('pd-icon').textContent = p.icon;
   document.getElementById('pd-cat').textContent = p.category;
   document.getElementById('pd-title').textContent = p.name;
   document.getElementById('pd-hero-desc').textContent = p.heroDesc;
   document.getElementById('pd-description').innerHTML = p.description;
   document.getElementById('pd-gallery-title').textContent = p.name + ' — Product Images';
 
+  // Inject hero image from first product image
+  var heroImgContainer = document.getElementById('pd-hero-img');
+  var heroSrc = (p.images && p.images.length > 0) ? p.images[0].src : (p.heroImage || '');
+  if (heroSrc) {
+    var img = document.createElement('img');
+    img.src = heroSrc;
+    img.alt = p.name + ' — Prarthana Industries';
+    heroImgContainer.appendChild(img);
+  }
+
   // Wire mailto with product name pre-filled
   const subject = encodeURIComponent('Enquiry: ' + p.name + ' — Prarthana Industries');
   const body = encodeURIComponent('Hi,\n\nI am interested in: ' + p.name + '\n\nName:\nPhone:\nQuantity / Specifications:\n');
-    document.getElementById('pd-quote-btn').href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
+  document.getElementById('pd-quote-btn').href = 'mailto:darshan@prarthanaindustries.com?subject=' + subject + '&body=' + body;
 
   buildGallery(p);
 }
