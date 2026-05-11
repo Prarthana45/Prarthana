@@ -1,134 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-<url>
-  <loc>https://prarthanaindustries.com/</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
+  <!-- Home -->
+  <url>
+    <loc>https://prarthanaindustries.com/</loc>
+    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
 
-<url>
-  <loc>https://prarthanaindustries.com/products.html</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <!-- Core pages -->
+  <url>
+    <loc>https://prarthanaindustries.com/products.html</loc>
+    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
+    <priority>0.85</priority>
+  </url>
 
-<url>
-  <loc>https://prarthanaindustries.com/contact.html</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://prarthanaindustries.com/contact.html</loc>
+    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=bevel-gear</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://prarthanaindustries.com/about.html</loc>
+    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
 
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=chain-coupling</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <!-- Product pages -->
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=bevel-gear</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=chain-coupling</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=customised-parts</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=food-machine-parts</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=geneva-mechanism</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=helical-gear</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=industrial-gear</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=industrial-sprockets</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=rack-and-pinion</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=spiral-bevel-gear</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=spiral-jaw-clutch-coupling</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-bush</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-pulley</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=timing-pulley</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=v-belt-pulley</loc><priority>0.80</priority></url>
+  <url><loc>https://prarthanaindustries.com/product-detail.html?p=v-groove-pulley</loc><priority>0.80</priority></url>
 
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=customised-parts</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=food-machining-parts</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=geneva</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=helical-gear</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=industrial-gear</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=industrial-sprockets</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=rack-and-pinion</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=spiral-bevel-gear</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=spiral-jaw-clutch</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-bush</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-pulley</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=timing-pulley</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=v-belt-pulley</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/product-detail.html?p=v-groove-pulley</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/about.html</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-<url>
-  <loc>https://prarthanaindustries.com/index.html</loc>
-  <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
+  <!-- Main listing -->
+  <url>
+    <loc>https://prarthanaindustries.com/index.html</loc>
+    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
+    <priority>0.60</priority>
+  </url>
 
 </urlset>
