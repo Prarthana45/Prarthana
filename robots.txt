@@ -3,11 +3,8 @@ User-agent: *
 # Allow full website crawling
 Allow: /
 
-# Block only specific low-value page
+# Block only low-value or unnecessary pages
 Disallow: /franchisee.html
 
-# (IMPORTANT) Do NOT block query parameters
-# Your site uses ?p= for products, so keep them crawlable
-
 # Sitemap
-Sitemap: https://prarthana45.github.io/Prarthana/sitemap.xml
+Sitemap: https://prarthanaindustries.com/sitemap.xml
