@@ -1,59 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+    http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <!-- Home -->
-  <url>
-    <loc>https://prarthanaindustries.com/</loc>
-    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-    <priority>1.00</priority>
-  </url>
+    <!-- Home -->
+    <url>
+        <loc>https://prarthanaindustries.com/</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>1.00</priority>
+    </url>
 
-  <!-- Core pages -->
-  <url>
-    <loc>https://prarthanaindustries.com/products.html</loc>
-    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-    <priority>0.85</priority>
-  </url>
+    <url>
+        <loc>https://prarthanaindustries.com/index.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.95</priority>
+    </url>
 
-  <url>
-    <loc>https://prarthanaindustries.com/contact.html</loc>
-    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
+    <!-- Core Pages -->
+    <url>
+        <loc>https://prarthanaindustries.com/about.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
 
-  <url>
-    <loc>https://prarthanaindustries.com/about.html</loc>
-    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-    <priority>0.80</priority>
-  </url>
+    <url>
+        <loc>https://prarthanaindustries.com/contact.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
 
-  <!-- Product pages -->
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=bevel-gear</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=chain-coupling</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=customised-parts</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=food-machine-parts</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=geneva-mechanism</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=helical-gear</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=industrial-gear</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=industrial-sprockets</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=rack-and-pinion</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=spiral-bevel-gear</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=spiral-jaw-clutch-coupling</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-bush</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=taper-lock-pulley</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=timing-pulley</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=v-belt-pulley</loc><priority>0.80</priority></url>
-  <url><loc>https://prarthanaindustries.com/product-detail.html?p=v-groove-pulley</loc><priority>0.80</priority></url>
+    <url>
+        <loc>https://prarthanaindustries.com/products.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.90</priority>
+    </url>
 
-  <!-- Main listing -->
-  <url>
-    <loc>https://prarthanaindustries.com/index.html</loc>
-    <lastmod>2026-03-21T08:45:05+00:00</lastmod>
-    <priority>0.60</priority>
-  </url>
+    <url>
+        <loc>https://prarthanaindustries.com/products-and-services.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/profile.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/our-team.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.70</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/testimonial.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.65</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/infrastructure.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.70</priority>
+    </url>
+
+    <!-- Product / Service Pages -->
+    <url>
+        <loc>https://prarthanaindustries.com/chain-coupling.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/concrete-equipment.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/geneva-drive.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/geneva-wheel.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/industrial-gear.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/industrial-gears.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/industrial-sprocket.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/rack-pinion.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/self-starter-drive-assembly.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/spiral-jaw-clutch-coupling.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/taper-lock-bush-6050.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/taper-lock-products.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.80</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/taper-lock-pulley.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/timing-pulley.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/transmission-gears.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/v-belt-pulley.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://prarthanaindustries.com/v-groove-pulley.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- Dynamic Product Detail Page -->
+    <url>
+        <loc>https://prarthanaindustries.com/product-detail.html</loc>
+        <lastmod>2025-03-21</lastmod>
+        <priority>0.70</priority>
+    </url>
 
 </urlset>
